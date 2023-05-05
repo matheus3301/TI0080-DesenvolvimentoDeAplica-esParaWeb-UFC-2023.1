@@ -1,14 +1,19 @@
 :root{
-  --white: #EBF4EE;
-  --secondary: #6F9CEB;
-  --blue: #306BAC;
-  --primary:#190E4F;
-  --dark: #03012C;
+    --white: #EBF4EE;
+    --secondary: #6F9CEB;
+    --blue: #306BAC;
+    --primary:#190E4F;
+    --dark: #03012C;
 }
 
 html,body{
+  color: var(--dark) !important;
   background-color: var(--primary);
   font-family: 'Roboto', sans-serif;
+}
+
+button{
+  color: var(--white) !important;
 }
 
 .login-container{
@@ -31,6 +36,12 @@ html,body{
   border-color: var(--primary);
 }
 
+.btn-primary:hover{
+  background-color: var(--blue);
+  border-color: var(--blue);
+}
+
 .btn-submit{
   float: right;
 }
+
