@@ -1,0 +1,36 @@
+:root{
+  --white: #EBF4EE;
+  --secondary: #6F9CEB;
+  --blue: #306BAC;
+  --primary:#190E4F;
+  --dark: #03012C;
+}
+
+html,body{
+  background-color: var(--primary);
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-container{
+  flex: 1;
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary{
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-submit{
+  float: right;
+}
