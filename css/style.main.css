@@ -65,6 +65,13 @@ button{
   border-right: 1px solid var(--text-secondary)
 }
 
+@media screen and (max-width: 767px) {
+  .teacher-sidebar{
+    border-right: none;
+    border-bottom: 1px solid var(--text-secondary);
+  }
+}
+
 .list-group {
   padding: 0;
   border-radius: 0;
@@ -115,4 +122,22 @@ button{
 .row-class{
   gap: 25px;
   margin-bottom: 25px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.add-button {
+  position: fixed;
+  z-index: 100;
+  height: 40px;
+  width: 40px;
+  bottom: 50px;
+  right: 15px;
+  box-shadow: 4px 3px 10px 0px rgba(0,0,0,0.27);
 }
