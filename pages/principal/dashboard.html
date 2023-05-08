@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diretor | SmartTrivia</title>
+    <title>Área do Diretor | SmartTrivia</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,22 +20,35 @@
     <div class="row teacher-page">
         <nav class="col-md-2 sidebar teacher-sidebar">
             <div class="teacher-title py-4 px-3">
-                <h3>Bem-vindo, Matheus</h3>
+                <h3>Bem-vindo, Vitor</h3>
             </div>
             <ul class="list-group">
+              <a href="./dashboard.html">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Menu Principal
+                </li>
+              </a>
+              <a href="./teachers.html">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   Professores
                 </li>
+              </a>
+              <a href="./students.html"></a>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                   Alunos
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  Cadastro
                 </li>
             </ul>
         </nav>
         <div class="col-md-10 teacher-dashboard">
             <div class="container mt-5">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">Diretor</li>
+                  <li class="breadcrumb-item active" aria-current="page">Visão Geral</li>
+                </ol>
+              </nav>
+              <h1>Visão Geral</h1>
+              
             </div>
         </div>
     </div>
