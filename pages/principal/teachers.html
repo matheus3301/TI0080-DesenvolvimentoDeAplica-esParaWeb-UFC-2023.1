@@ -16,98 +16,131 @@
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="../../css/style.main.css" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
   </head>
   <body>
     <div class="row teacher-page">
       <nav class="col-md-2 sidebar teacher-sidebar">
         <div class="teacher-title py-4 px-3">
-            <h3>Bem-vindo, Vitor</h3>
+          <h3>Bem-vindo, Vitor</h3>
         </div>
         <ul class="list-group">
           <a href="./dashboard.html">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
               Menu Principal
             </li>
           </a>
           <a href="./teachers.html">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
               Professores
             </li>
           </a>
           <a href="./students.html">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
               Alunos
             </li>
           </a>
         </ul>
       </nav>
       <div class="col-md-10 teacher-dashboard">
-          <div class="container mt-5">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">Diretor</li>
-                <li class="breadcrumb-item active" aria-current="page">Professores</li>
-              </ol>
-            </nav>
-            <h1>Professores</h1>
-            <div class="table-responsive">
-              <table class="table table-striped
-              table-hover	
-              table-bordered
-              align-middle">
-                <thead class="">
-                  <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Turmas Criadas</th>
-                    <th>Ações</th>
-                  </tr>
-                  </thead>
-                  <tbody class="table-group-divider">
-                    <tr>
-                      <td scope="row">Vandemberg Junior</td>
-                      <td>junior@gmail.com</td>
-                      <td>3</td>
-                      <td>
-                        <button type="button" class="btn btn-primary"><i class="bi bi-plus-square"></i> Ver Mais</button>
-                        <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i> Deletar</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td scope="row">Davi Albuquerque</td>
-                      <td>davi@gmail.com</td>
-                      <td>1</td>
-                      <td>
-                        <button type="button" class="btn btn-primary"><i class="bi bi-plus-square"></i> Ver Mais</button>
-                        <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i> Deletar</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td scope="row">Lucas Noronha</td>
-                      <td>lucas@gmail.com</td>
-                      <td>0</td>
-                      <td>
-                        <button type="button" class="btn btn-primary"><i class="bi bi-plus-square"></i> Ver Mais</button>
-                        <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i> Deletar</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td scope="row">Yago Costa</td>
-                      <td>yago@gmail.com</td>
-                      <td>8</td>
-                      <td>
-                        <button type="button" class="btn btn-primary"><i class="bi bi-plus-square"></i> Ver Mais</button>
-                        <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i> Deletar</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    
-                  </tfoot>
-              </table>
+        <div class="container mt-5">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">Diretor</li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Professores
+              </li>
+            </ol>
+          </nav>
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Professores</h1>
+              <a href="new-teacher.html">
+                <button type="button" class="btn btn-primary btn-submit mb-4">
+                  <i class="bi bi-person-plus"></i>Adicionar Novo
+                </button>
+              </a>
             </div>
           </div>
+          <div class="table-responsive">
+            <table
+              class="table table-striped table-hover table-bordered align-middle"
+            >
+              <thead class="">
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Turmas Criadas</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody class="table-group-divider">
+                <tr>
+                  <td scope="row">Vandemberg Junior</td>
+                  <td>junior@gmail.com</td>
+                  <td>3</td>
+                  <td>
+                    <button type="button" class="btn btn-primary">
+                      <i class="bi bi-plus-square"></i> Ver Mais
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      <i class="bi bi-trash"></i> Deletar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="row">Davi Albuquerque</td>
+                  <td>davi@gmail.com</td>
+                  <td>1</td>
+                  <td>
+                    <button type="button" class="btn btn-primary">
+                      <i class="bi bi-plus-square"></i> Ver Mais
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      <i class="bi bi-trash"></i> Deletar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="row">Lucas Noronha</td>
+                  <td>lucas@gmail.com</td>
+                  <td>0</td>
+                  <td>
+                    <button type="button" class="btn btn-primary">
+                      <i class="bi bi-plus-square"></i> Ver Mais
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      <i class="bi bi-trash"></i> Deletar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td scope="row">Yago Costa</td>
+                  <td>yago@gmail.com</td>
+                  <td>8</td>
+                  <td>
+                    <button type="button" class="btn btn-primary">
+                      <i class="bi bi-plus-square"></i> Ver Mais
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      <i class="bi bi-trash"></i> Deletar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <script src="../js/bootstrap.bundle.min.js"></script>

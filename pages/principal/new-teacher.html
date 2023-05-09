@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diretor | SmartTrivia</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      type="text/css"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.main.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <div class="row teacher-page">
+      <nav class="col-md-2 sidebar teacher-sidebar">
+        <div class="teacher-title py-4 px-3">
+          <h3>Bem-vindo, Vitor</h3>
+        </div>
+        <ul class="list-group">
+          <a href="./dashboard.html">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Menu Principal
+            </li>
+          </a>
+          <a href="./teachers.html">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Professores
+            </li>
+          </a>
+          <a href="./students.html">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              Alunos
+            </li>
+          </a>
+        </ul>
+      </nav>
+      <div class="col-md-10 teacher-dashboard">
+        <div class="container mt-5">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">Diretor</li>
+              <li class="breadcrumb-item">Professores</li>
+
+              <li class="breadcrumb-item active" aria-current="page">
+                Novo Professor
+              </li>
+            </ol>
+          </nav>
+          <h1>Cadastro de Professor</h1>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="form-control"
+                  placeholder="nome do professor"
+                  aria-describedby=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="email do professor"
+                  aria-describedby=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="birthday" class="form-label"
+                  >Data de Nascimento</label
+                >
+                <input
+                  type="date"
+                  name="birthday"
+                  id="birthday"
+                  class="form-control"
+                  placeholder="data de nascimento"
+                  aria-describedby=""
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="cpf" class="form-label">CPF</label>
+                <input
+                  type="text"
+                  name="cpf"
+                  id="cpf"
+                  class="form-control"
+                  placeholder="cpf do professor"
+                  aria-describedby=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="mb-3">
+                <label for="" class="form-label">Senha</label>
+                <input
+                  type="password"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="senha do professor"
+                  aria-describedby=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary btn-submit">
+                Cadastrar Professor
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
