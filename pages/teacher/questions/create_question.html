@@ -27,21 +27,21 @@
           <h3>Bem-vindo, Matheus</h3>
         </div>
         <ul class="list-group">
-          <a href="../classes.html">
+          <a href="/pages/teacher/classes.html">
             <li
               class="list-group-item d-flex justify-content-between align-items-center"
             >
               Minhas Turmas
             </li>
           </a>
-          <a href="../tests.html">
+          <a href="/pages/teacher/tests.html">
             <li
               class="list-group-item d-flex justify-content-between align-items-center"
             >
               Minhas Provas
             </li>
           </a>
-          <a href="../questions.html">
+          <a href="/pages/teacher/questions.html">
             <li
               class="list-group-item d-flex justify-content-between align-items-center active"
             >
@@ -57,66 +57,91 @@
               <li class="breadcrumb-item">Professor</li>
               <li class="breadcrumb-item">Banco de Questões</li>
               <li class="breadcrumb-item active" aria-current="page">
-                Criação de Questão
+                Cadastro de Questão
               </li>
             </ol>
           </nav>
-          <div
-            class="row justify-content-center align-items-center g-2"
-          >
-            <div class="row">
-                <div class="mb-3">
-                    <label for="" class="form-label">Comando da Questão:</label>
-                    <input
-                    type="text"
-                    name=""
-                    id=""
-                    class="form-control"
-                    placeholder=""
-                    aria-describedby="helpId"
-                    />
-                </div>
+          <h1>Cadastro de Questão</h1>
+          <div class="row">
+            <div class="mb-3">
+              <label for="" class="form-label">Comando da Questão:</label>
+              <input
+                type="text"
+                name="description"
+                class="form-control"
+                placeholder="Descrição"
+                aria-describedby="helpId"
+              />
             </div>
-            <div class="row">
-                <div class="mb-3">
-                    <label for="" class="form-label">Adicionar Imagem</label>
-                    <input type="file" class="form-control" name="" id="" placeholder="" aria-describedby="fileHelpId">
-                </div>
+          </div>
+          <div class="row">
+            <div class="mb-3">
+              <label for="" class="form-label">Adicionar Imagem</label>
+              <input
+                type="file"
+                class="form-control"
+                name="image"
+                aria-describedby="fileHelpId"
+              />
             </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <div class="mb-3">
-                      <label for="" class="form-label">Alternativa Correta</label>
-                      <input type="text"
-                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="mb-3">
-                      <label for="" class="form-label">Alternativa 2</label>
-                      <input type="text"
-                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                    </div>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="mb-3">
+                <label for="" class="form-label">Alternativa Correta</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="alternative_1"
+                  aria-describedby="helpId"
+                  placeholder="Resposta"
+                />
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <div class="mb-3">
-                      <label for="" class="form-label">Alternativa 3</label>
-                      <input type="text"
-                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="mb-3">
-                      <label for="" class="form-label">Alternativa 4</label>
-                      <input type="text"
-                        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                    </div>
-                </div>
-                <div class="row">
-                    <button type="submit" class="btn btn-primary">Enviar Questão</button>
-                </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="mb-3">
+                <label for="" class="form-label">Alternativa 2</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="alternative_2"
+                  aria-describedby="helpId"
+                  placeholder="Resposta"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="mb-3">
+                <label for="" class="form-label">Alternativa 3</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="alternative_3"
+                  aria-describedby="helpId"
+                  placeholder="Resposta"
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="mb-3">
+                <label for="" class="form-label">Alternativa 4</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="alternative_4"
+                  aria-describedby="helpId"
+                  placeholder="Resposta"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primary btn-submit">
+                Enviar Questão
+              </button>
             </div>
           </div>
         </div>

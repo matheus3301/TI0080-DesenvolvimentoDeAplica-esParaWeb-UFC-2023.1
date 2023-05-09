@@ -20,21 +20,27 @@
     <div class="row teacher-page">
       <nav class="col-md-3 col-lg-2 sidebar teacher-sidebar">
         <div class="teacher-title py-4 px-3">
-            <h3>Bem-vindo, Matheus</h3>
+          <h3>Bem-vindo, Matheus</h3>
         </div>
         <ul class="list-group">
-          <a href="./classes.html">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="/pages/teacher/classes.html">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
               Minhas Turmas
             </li>
           </a>
-          <a href="./tests.html">
-            <li class="list-group-item d-flex justify-content-between align-items-center active">
+          <a href="/pages/teacher/tests.html">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center active"
+            >
               Minhas Provas
             </li>
           </a>
-          <a href="./questions.html">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="/pages/teacher/questions.html">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
               Banco de Questões
             </li>
           </a>
@@ -45,11 +51,61 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">Professor</li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Provas
-              </li>
+              <li class="breadcrumb-item active" aria-current="page">Provas</li>
             </ol>
           </nav>
+          <h1>Minhas Provas</h1>
+          <a href="/pages/teacher/test/create_test.html" class="btn btn-secondary add-button">+</a>
+          <div
+            class="row row-class justify-content-center align-items-center g-2"
+          >
+            <div class="col">
+              <div class="card card-class">
+                <div class="card-body">
+                  <h5 class="card-title">1º AP - Geografia</h5>
+                  <p class="card-text">Assuntos: Clima e Relevo</p>
+                  <a href="/pages/teacher/test/test.html" class="btn btn-primary"
+                    >Acessar Prova</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card card-class">
+                <div class="card-body">
+                  <h5 class="card-title">1º AP - Matemática</h5>
+                  <p class="card-text">Assuntos: Trigonometria</p>
+                  <a href="/pages/teacher/test/test.html" class="btn btn-primary"
+                    >Acessar Prova</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card card-class">
+                <div class="card-body">
+                  <h5 class="card-title">1º AP - História</h5>
+                  <p class="card-text">Assuntos: Grandes Navegações</p>
+                  <a href="/pages/teacher/test/test.html" class="btn btn-primary"
+                    >Acessar Prova</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <nav class="pagination-nav">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item">
+                  <a class="page-link disabled" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

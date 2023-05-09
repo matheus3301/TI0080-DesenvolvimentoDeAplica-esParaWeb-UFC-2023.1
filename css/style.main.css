@@ -141,3 +141,12 @@ a {
   right: 15px;
   box-shadow: 4px 3px 10px 0px rgba(0,0,0,0.27);
 }
+
+.img-fluid {
+  height: 300px;
+}
+
+.question-items {
+  list-style-type: none;
+  font-size: 18px;
+}
