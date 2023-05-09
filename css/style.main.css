@@ -147,6 +147,16 @@ a {
 }
 
 .question-items {
-  list-style-type: none;
   font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.question-options {
+  display: flex;
+  padding: 0;
+  float: right;
+  gap: 12px;
 }
