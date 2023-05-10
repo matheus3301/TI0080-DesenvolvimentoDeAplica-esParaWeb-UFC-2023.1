@@ -160,3 +160,53 @@ ul {
   float: right;
   gap: 12px;
 }
+
+.game-box{
+  background-color: var(--background);
+  border-radius: 10px;
+  padding-bottom: 4%;
+  padding-top: 4%;
+}
+
+.game-img{
+  max-height: 300px;
+  
+}
+
+.game-question{
+  font-size: large;
+}
+
+.game-btn{
+  width: 100%;
+  height: 4rem;
+  font-size: larger;
+  font-weight: bold;
+  border-color: transparent;
+  margin-bottom: 30px;
+}
+
+.game-btn-a{
+  background-color: red;
+}
+
+
+.game-btn-b{
+  background-color: blue;
+}
+
+
+.game-btn-c{
+  background-color: green;
+}
+
+
+.game-btn-d{
+  background-color: yellowgreen;
+}
+
+.game-time{
+  font-weight: bold;
+  font-size: large;
+}
+
