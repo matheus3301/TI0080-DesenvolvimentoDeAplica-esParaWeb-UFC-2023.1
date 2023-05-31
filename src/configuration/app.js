@@ -7,8 +7,9 @@ const authRouter = require('../routes/auth');
 const app = express();
 
 app.use(cors());
+app.use(express.static('static'));
 
-nunjucks.configure('src/views', {
+nunjucks.configure('templates', {
   autoescape: true,
   express: app,
 });

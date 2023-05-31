@@ -1,0 +1,211 @@
+:root {
+  --background: #f5f5f5;
+  --primary: #0072c6;
+  --dark-primary: #0060a8;
+  --secondary: #41b883;
+  --accent: #ff9800;
+  --text: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #808080;
+}
+
+html,
+body {
+  color: var(--text) !important;
+  background-color: var(--primary);
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin: 0;
+}
+
+button {
+  color: var(--background) !important;
+}
+
+.login-container {
+  flex: 1;
+  background-color: var(--background);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.btn-submit {
+  float: right;
+}
+
+.teacher-sidebar {
+  background-color: var(--primary);
+  padding: 0;
+  border-right: 1px solid var(--text-secondary);
+}
+
+@media screen and (max-width: 767px) {
+  .teacher-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--text-secondary);
+  }
+}
+
+.list-group {
+  padding: 0;
+  border-radius: 0;
+  font-size: 18px;
+}
+
+.teacher-dashboard {
+  background-color: var(--background);
+  padding: 0;
+}
+
+.teacher-page {
+  height: 100vh;
+}
+
+.card-class .card-body a {
+  float: right;
+}
+
+.teacher-title {
+  background-color: var(--dark-primary);
+}
+
+.teacher-title h3 {
+  margin-bottom: 0;
+  color: var(--background);
+}
+
+.list-group-item {
+  background: none;
+  border: none;
+}
+
+.list-group-item.active {
+  background: var(--accent);
+}
+
+.list-group-item a {
+  color: var(--background);
+}
+
+.list-group-item a:hover {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.list-group-item.active a:hover {
+  color: var(--text);
+}
+
+.row-class {
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.add-button {
+  position: fixed;
+  z-index: 100;
+  height: 40px;
+  width: 40px;
+  bottom: 50px;
+  right: 15px;
+  box-shadow: 4px 3px 10px 0px rgba(0, 0, 0, 0.27);
+}
+
+.img-fluid {
+  height: 300px;
+}
+
+.question-items {
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.question-options {
+  display: flex;
+  padding: 0;
+  float: right;
+  gap: 12px;
+}
+
+.game-box {
+  background-color: var(--background);
+  border-radius: 10px;
+  padding-bottom: 4%;
+  padding-top: 4%;
+}
+
+.game-img {
+  max-height: 300px;
+}
+
+.game-question {
+  font-size: large;
+}
+
+.game-btn {
+  width: 100%;
+  height: 4rem;
+  font-size: larger;
+  font-weight: bold;
+  border-color: transparent;
+  margin-bottom: 30px;
+}
+
+.game-btn-a {
+  background-color: red;
+}
+
+.game-btn-b {
+  background-color: blue;
+}
+
+.game-btn-c {
+  background-color: green;
+}
+
+.game-btn-d {
+  background-color: yellowgreen;
+}
+
+.game-time {
+  font-weight: bold;
+  font-size: large;
+}
