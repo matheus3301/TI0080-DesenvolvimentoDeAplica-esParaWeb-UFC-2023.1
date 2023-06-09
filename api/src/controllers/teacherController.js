@@ -12,7 +12,7 @@ const createTeacher = async (req, res) => {
     if (password !== confirmPassword) {
       return res
         .status(HttpStatus.BAD_REQUEST)
-        .json({ error: 'Passwords do not match' });
+        .json({ error: 'Senha não confere' });
     }
 
     const teacher = await prisma.teacher.create({
@@ -42,7 +42,7 @@ const createTeacher = async (req, res) => {
     console.error('Error creating teacher:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Failed to create teacher' });
+      .json({ error: 'Erro ao criar professor' });
   }
 };
 
@@ -56,7 +56,7 @@ const getAllTeachers = async (req, res) => {
     console.error('Error retrieving teachers:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Failed to retrieve teachers' });
+      .json({ error: 'Erro ao listar professores' });
   }
 };
 
@@ -78,34 +78,38 @@ const getTeacherById = async (req, res) => {
     console.error('Error retrieving teacher:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Failed to retrieve teacher' });
+      .json({ error: 'Erro ao carregar professor' });
   }
 };
 
 // Update a teacher by ID
 const updateTeacherById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, cpf, email, password, profilePictureUrl } = req.body;
+  // try {
+  //   const { id } = req.params;
+  //   const { name, cpf, email, password, profilePictureUrl } = req.body;
 
-    const teacher = await prisma.teacher.update({
-      where: { id: parseInt(id) },
-      data: {
-        name,
-        cpf,
-        email,
-        password,
-        profilePictureUrl,
-      },
-    });
+  //   const teacher = await prisma.teacher.update({
+  //     where: { id: parseInt(id) },
+  //     data: {
+  //       name,
+  //       cpf,
+  //       email,
+  //       password,
+  //       profilePictureUrl,
+  //     },
+  //   });
 
-    res.json(teacher);
-  } catch (error) {
-    console.error('Error updating teacher:', error);
-    res
-      .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Failed to update teacher' });
-  }
+  //   res.json(teacher);
+  // } catch (error) {
+  //   console.error('Error updating teacher:', error);
+  //   res
+  //     .status(HttpStatus.INTERNAL_SERVER_ERROR)
+  //     .json({ error: 'Erro ao atualizar professor' });
+  // }
+
+  res.status(HttpStatus.NOT_IMPLEMENTED).json({
+    error: 'Funcionalidade ainda não implementada',
+  });
 };
 
 // Delete a teacher by ID
@@ -122,7 +126,7 @@ const deleteTeacherById = async (req, res) => {
     console.error('Error deleting teacher:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Failed to delete teacher' });
+      .json({ error: 'Erro ao deletar professor' });
   }
 };
 

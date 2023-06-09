@@ -81,35 +81,39 @@ const getQuestionById = async (req, res) => {
 
 // Update a question by ID
 const updateQuestionById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { title, statement, choices } = req.body;
+  // try {
+  //   const { id } = req.params;
+  //   const { title, statement, choices } = req.body;
 
-    const question = await prisma.question.update({
-      where: { id: parseInt(id) },
-      data: {
-        title,
-        statement,
-        choices: {
-          upsert: choices.map((choice) => ({
-            where: { id: choice.id || -1 },
-            create: { content: choice.content },
-            update: { content: choice.content },
-          })),
-        },
-      },
-      include: {
-        choices: true,
-      },
-    });
+  //   const question = await prisma.question.update({
+  //     where: { id: parseInt(id) },
+  //     data: {
+  //       title,
+  //       statement,
+  //       choices: {
+  //         upsert: choices.map((choice) => ({
+  //           where: { id: choice.id || -1 },
+  //           create: { content: choice.content },
+  //           update: { content: choice.content },
+  //         })),
+  //       },
+  //     },
+  //     include: {
+  //       choices: true,
+  //     },
+  //   });
 
-    res.json(question);
-  } catch (error) {
-    console.error('Error updating question:', error);
-    res
-      .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Erro ao atualizar questão' });
-  }
+  //   res.json(question);
+  // } catch (error) {
+  //   console.error('Error updating question:', error);
+  //   res
+  //     .status(HttpStatus.INTERNAL_SERVER_ERROR)
+  //     .json({ error: 'Erro ao atualizar questão' });
+  // }
+
+  res.status(HttpStatus.NOT_IMPLEMENTED).json({
+    error: 'Funcionalidade ainda não implementada',
+  });
 };
 
 // Delete a question by ID
