@@ -82,6 +82,7 @@ button {
 .teacher-dashboard {
   background-color: var(--background);
   padding: 0;
+  height: 100%;
 }
 
 .teacher-page {
