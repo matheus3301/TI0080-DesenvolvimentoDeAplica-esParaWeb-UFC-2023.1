@@ -49,6 +49,7 @@ model Teacher {
 
   credentials Credentials[]
   questions   Question[]
+  classes     Class[]
 }
 
 model Student {
@@ -58,6 +59,7 @@ model Student {
   profilePictureUrl String?
 
   credentials Credentials[]
+  Enrollment  Enrollment[]
 }
 
 model Question {
@@ -81,9 +83,34 @@ model Choice {
   value     String
   isCorrect Boolean @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   question   Question? @relation(fields: [questionId], references: [id], onDelete: Cascade)
   questionId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Class {
+  id Int @id @default(autoincrement())
+
+  title       String @unique
+  description String
+
+  teacher     Teacher      @relation(fields: [teacherId], references: [id])
+  teacherId   Int
+  enrollments Enrollment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Enrollment {
+  id Int @id @default(autoincrement())
+
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  class     Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
+  studentId Int
+  classId   Int
+
+  createdAt DateTime @default(now())
 }
