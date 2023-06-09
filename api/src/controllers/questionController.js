@@ -8,9 +8,13 @@ const createQuestion = async (req, res) => {
       data: {
         title,
         statement,
-        teacher: teacher,
+        teacher: {
+          connect: {
+            id: teacher,
+          },
+        },
         choices: {
-          create: choices.map((choice) => ({ content: choice })),
+          create: choices,
         },
       },
       include: {
