@@ -101,10 +101,41 @@ const deleteClassById = async (req, res) => {
   }
 };
 
+const enrollOnClass = async (req, res) => {
+  try {
+    const { classId } = req.params;
+    const { studentId } = req.body;
+
+    const enrollment = prisma.enrollment.create({
+      data: {
+        class: {
+          connect: {
+            id: classId,
+          },
+        },
+        student: {
+          connect: {
+            id: studentId,
+          },
+        },
+      },
+    });
+
+    res.json(enrollment);
+  } catch (error) {
+    console.log(```Error enrolling on class ${classId}```);
+
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Falha ao se matricular na turma',
+    });
+  }
+};
+
 module.exports = {
   createClass,
   getAllClasses,
   getClassById,
   updateClassById,
   deleteClassById,
+  enrollOnClass,
 };
