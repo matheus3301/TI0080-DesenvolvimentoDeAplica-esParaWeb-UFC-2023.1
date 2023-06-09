@@ -1,4 +1,5 @@
 const prisma = require('../configuration/database');
+const { removeQuestionAnswer } = require('../util/removeQuestionAnswer');
 
 const createQuestion = async (req, res) => {
   try {
@@ -38,6 +39,8 @@ const getAllQuestions = async (req, res) => {
       },
     });
 
+    questionsWithoutAnswer = questions.map(removeQuestionAnswer);
+
     res.json(questions);
   } catch (error) {
     console.error('Error retrieving questions:', error);
@@ -60,8 +63,9 @@ const getQuestionById = async (req, res) => {
     if (!question) {
       return res.status(404).json({ error: 'Question not found' });
     }
+    questionWithoutAnswer = removeQuestionAnswer(question);
 
-    res.json(question);
+    res.json(questionWithoutAnswer);
   } catch (error) {
     console.error('Error retrieving question:', error);
     res.status(500).json({ error: 'Failed to retrieve question' });

@@ -21,7 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"Sample Question\",\n  \"teacher\": {\n      \"id\": 1\n  },\n  \"statement\": \"This is a sample question\",\n  \"choices\": [\n    \"Choice 1\",\n    \"Choice 2\",\n    \"Choice 3\"\n  ]\n}"
+							"raw": "{\n    \"title\": \"Sample Question\",\n    \"teacher\": 2,\n    \"statement\": \"This is a sample question\",\n    \"choices\": [\n        {\n            \"value\": \"Verdadeiro\",\n            \"isCorrect\": true\n        },\n        {\n            \"value\": \"Verdadeiro\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/questions",
@@ -59,13 +59,19 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/questions/{{question_id}}",
+							"raw": "{{base_url}}/questions/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"questions",
-								"{{question_id}}"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -86,13 +92,19 @@
 							"raw": "{\n  \"title\": \"Updated Question\",\n  \"statement\": \"This question has been updated\",\n  \"choices\": [\n    {\n      \"id\": 1,\n      \"content\": \"Updated Choice 1\"\n    },\n    \"New Choice 2\",\n    \"New Choice 3\"\n  ]\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/questions/{{question_id}}",
+							"raw": "{{base_url}}/questions/:id",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"questions",
-								"{{question_id}}"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						},
 						"description": "Updates a question by ID"
