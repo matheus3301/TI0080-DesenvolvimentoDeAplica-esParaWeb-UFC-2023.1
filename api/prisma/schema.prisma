@@ -10,6 +10,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Credentials {
+  id Int @id @default(autoincrement())
+
+  email    String @unique
+  password String
+
+  type String
+
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+  teacherId Int?
+
+  student   Student? @relation(fields: [studentId], references: [id])
+  studentId Int?
+
+  admin   Admin? @relation(fields: [adminId], references: [id])
+  adminId Int?
+}
+
+model Admin {
+  id Int @id @default(autoincrement())
+
+  name              String
+  profilePictureUrl String?
+
+  credentials Credentials[]
+}
+
 model Teacher {
   id Int @id @default(autoincrement())
 
@@ -17,13 +44,20 @@ model Teacher {
   cpf               String
   profilePictureUrl String?
 
-  email    String
-  password String
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Question Question[]
+  credentials Credentials[]
+  questions   Question[]
+}
+
+model Student {
+  id Int @id @default(autoincrement())
+
+  name              String
+  profilePictureUrl String?
+
+  credentials Credentials[]
 }
 
 model Question {
@@ -50,6 +84,6 @@ model Choice {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Question   Question? @relation(fields: [questionId], references: [id])
+  question   Question? @relation(fields: [questionId], references: [id])
   questionId Int
 }

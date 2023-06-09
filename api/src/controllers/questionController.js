@@ -1,5 +1,7 @@
 const prisma = require('../configuration/database');
+const { Prisma } = require('@prisma/client');
 const { removeQuestionAnswer } = require('../util/removeQuestionAnswer');
+const HttpStatus = require('http-status-codes').StatusCodes;
 
 const createQuestion = async (req, res) => {
   try {
@@ -25,8 +27,17 @@ const createQuestion = async (req, res) => {
 
     res.json(question);
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (e.code === 'P2002') {
+        res
+          .status(HttpStatus.CONFLICT)
+          .json({ error: 'Um usuário já existe com esse email' });
+      }
+    }
     console.error('Error creating question:', error);
-    res.status(500).json({ error: 'Failed to create question' });
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Falha ao criar questão' });
   }
 };
 
@@ -44,7 +55,9 @@ const getAllQuestions = async (req, res) => {
     res.json(questions);
   } catch (error) {
     console.error('Error retrieving questions:', error);
-    res.status(500).json({ error: 'Failed to retrieve questions' });
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Erro ao listar questões' });
   }
 };
 
@@ -61,14 +74,16 @@ const getQuestionById = async (req, res) => {
     });
 
     if (!question) {
-      return res.status(404).json({ error: 'Question not found' });
+      return res.status(404).json({ error: 'Questão não encontrada' });
     }
     questionWithoutAnswer = removeQuestionAnswer(question);
 
     res.json(questionWithoutAnswer);
   } catch (error) {
     console.error('Error retrieving question:', error);
-    res.status(500).json({ error: 'Failed to retrieve question' });
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Erro ao carregar questão' });
   }
 };
 
@@ -99,7 +114,9 @@ const updateQuestionById = async (req, res) => {
     res.json(question);
   } catch (error) {
     console.error('Error updating question:', error);
-    res.status(500).json({ error: 'Failed to update question' });
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Erro ao atualizar questão' });
   }
 };
 
@@ -115,7 +132,9 @@ const deleteQuestionById = async (req, res) => {
     res.sendStatus(204);
   } catch (error) {
     console.error('Error deleting question:', error);
-    res.status(500).json({ error: 'Failed to delete question' });
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Falha ao deletar questão' });
   }
 };
 

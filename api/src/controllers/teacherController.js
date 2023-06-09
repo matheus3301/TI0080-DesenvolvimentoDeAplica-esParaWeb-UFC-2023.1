@@ -15,9 +15,14 @@ const createTeacher = async (req, res) => {
       data: {
         name,
         cpf,
-        email,
-        password,
         profilePictureUrl,
+        credentials: {
+          create: {
+            email,
+            password,
+            type: 'TEACHER',
+          },
+        },
       },
     });
 
