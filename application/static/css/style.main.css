@@ -210,3 +210,18 @@ ul {
   font-weight: bold;
   font-size: large;
 }
+
+.questions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.questions-header a{
+  margin-bottom: 0 !important;
+}
+
+.questions-grid {
+  padding: 0;
+  gap: calc(var(--bs-gutter-x)) 0;
+}

@@ -3,6 +3,7 @@ const nunjucks = require('nunjucks');
 const cors = require('cors');
 
 const authRouter = require('../routes/auth');
+const teacherRouter = require('../routes/teacher');
 
 const app = express();
 
@@ -15,5 +16,6 @@ nunjucks.configure('templates', {
 });
 
 app.use('/', authRouter);
+app.use('/teacher', teacherRouter);
 
 module.exports = app;
