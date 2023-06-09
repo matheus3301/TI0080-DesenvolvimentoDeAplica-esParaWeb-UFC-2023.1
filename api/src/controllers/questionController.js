@@ -1,5 +1,4 @@
 const prisma = require('../configuration/database');
-const { Prisma } = require('@prisma/client');
 const { removeQuestionAnswer } = require('../util/removeQuestionAnswer');
 const HttpStatus = require('http-status-codes').StatusCodes;
 
@@ -27,13 +26,6 @@ const createQuestion = async (req, res) => {
 
     res.json(question);
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (e.code === 'P2002') {
-        res
-          .status(HttpStatus.CONFLICT)
-          .json({ error: 'Um usuário já existe com esse email' });
-      }
-    }
     console.error('Error creating question:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
