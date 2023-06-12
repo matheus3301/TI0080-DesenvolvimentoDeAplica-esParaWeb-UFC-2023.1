@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const authRouter = require('../routes/auth');
 const teacherRouter = require('../routes/teacher');
+const principalRouter = require('../routes/principal');
 
 const app = express();
 
@@ -17,5 +18,6 @@ nunjucks.configure('templates', {
 
 app.use('/', authRouter);
 app.use('/teacher', teacherRouter);
+app.use('/principal', principalRouter)
 
 module.exports = app;

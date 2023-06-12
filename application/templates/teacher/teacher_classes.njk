@@ -4,3 +4,32 @@
     {{ super() }}
     <li class="breadcrumb-item active">Minhas Turmas</li>
 {% endblock%}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 questions-header">
+            <h1>Minhas Turmas</h1>
+            <a
+            href="/pages/teacher/questions/create_question.html"
+            class="btn btn-primary btn-submit mb-4"
+            >
+                <i class="bi bi-person-plus"></i>Adicionar Novo
+            </a>
+        </div>
+        <div class="row questions-grid">
+            {% for class in classes_data %}
+                <div class="col-md-4">
+                    <div class="card card-class">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ class.title }}</h5>
+                            <p class="card-text">{{ class.description }}</p>
+                            <a href="#" class="btn btn-primary">
+                                Acesse a turma
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

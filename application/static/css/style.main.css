@@ -268,3 +268,11 @@ ul {
 .acessibility-list li:hover{
   opacity: 50%;
 }
+
+.card-title {
+  font-size: 1.25em;
+}
+
+.card-body a {
+  font-size: 1em;
+}

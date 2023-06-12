@@ -12,4 +12,39 @@ const get_question = async (id) => {
   return question_data;
 };
 
-module.exports = { get_all_questions, get_question };
+const get_all_teachers = async () => {
+  let teachers_data = [];
+  teachers_data = await fetch("http://localhost:7777/teachers");
+  teachers_data = await teachers_data.json();
+  return teachers_data;
+};
+
+const get_teacher = async (id) => {
+  let teacher_data = [];
+  teacher_data = await fetch("http://localhost:7777/teachers/:" + id);
+  teacher_data = await teacher_data.json();
+  return teacher_data;
+};
+
+const get_all_classes = async () => {
+  let classes_data = [];
+  classes_data = await fetch("http://localhost:7777/classes");
+  classes_data = await classes_data.json();
+  return classes_data;
+};
+
+const get_class = async (id) => {
+  let class_data = [];
+  class_data = await fetch("http://localhost:7777/classes/:" + id);
+  class_data = await class_data.json();
+  return class_data;
+};
+
+module.exports = {
+  get_all_questions,
+  get_question,
+  get_all_teachers,
+  get_teacher,
+  get_all_classes,
+  get_class,
+};
