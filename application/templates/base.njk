@@ -13,18 +13,12 @@
       rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
     <link id="app_css" rel="stylesheet" type="text/css" href="/css/style.main.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="/js/acessibility.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark acessibility-bar">
-      <ul class="acessibility-list">
-        <li onClick="undo_changes()">* Configurações Iniciais</li>
-        <li onClick="change_theme()">* Alterar Tema</li>
-        <li onClick="increase_font_size()">+ Aumentar Fonte</li>
-        <li onClick="decrease_font_size()">- Diminuir Fonte</li>
-      </ul>
-    </nav>
+    {% include "acessibility.njk" %}
     <div class="row teacher-page">
       <nav class="col-md-3 col-lg-2 sidebar teacher-sidebar">
         <div class="teacher-title py-4 px-3">

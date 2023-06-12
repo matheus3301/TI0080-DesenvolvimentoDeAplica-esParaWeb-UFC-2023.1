@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const teacherRouter = require('express').Router();
+const { get_all_questions } = require('../../../services/api');
 
 teacherRouter.get('/dashboard', (req, res) => {
   let content = {
@@ -28,10 +29,7 @@ teacherRouter.get('/dashboard/tests', (req, res) => {
 })
 
 teacherRouter.get('/dashboard/questions', async (req, res) => {
-  questions_data = []
-
-  questions_data = await fetch('http://localhost:7777/questions')
-  questions_data = await questions_data.json()
+  let questions_data = get_all_questions();
 
   let content = {
     name: 'Matheus',
