@@ -1,6 +1,6 @@
-const get_all_questions = async () => {
+const get_questions = async (query) => {
   let questions_data = [];
-  questions_data = await fetch("http://localhost:7777/questions");
+  questions_data = await fetch(`http://localhost:7777/questions${query ? `?query=${query}` : ''}`);
   questions_data = await questions_data.json();
   return questions_data;
 };
@@ -12,7 +12,7 @@ const get_question = async (id) => {
   return question_data;
 };
 
-const get_all_teachers = async () => {
+const get_teachers = async () => {
   let teachers_data = [];
   teachers_data = await fetch("http://localhost:7777/teachers");
   teachers_data = await teachers_data.json();
@@ -26,7 +26,7 @@ const get_teacher = async (id) => {
   return teacher_data;
 };
 
-const get_all_classes = async () => {
+const get_classes = async () => {
   let classes_data = [];
   classes_data = await fetch("http://localhost:7777/classes");
   classes_data = await classes_data.json();
@@ -41,10 +41,10 @@ const get_class = async (id) => {
 };
 
 module.exports = {
-  get_all_questions,
+  get_questions,
   get_question,
-  get_all_teachers,
+  get_teachers,
   get_teacher,
-  get_all_classes,
+  get_classes,
   get_class,
 };

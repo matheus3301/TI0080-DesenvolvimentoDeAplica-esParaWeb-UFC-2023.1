@@ -1,0 +1,42 @@
+{% extends "teacher/questions.njk" %}
+
+{% block breadcrumb %}
+    {{ super() }}
+    <li class="breadcrumb-item active">Criar Questão</li>
+{% endblock%}
+
+{% block content %}
+    <div class="questions-header">
+        <h1>Criar Questão</h1>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row g-2 d-flex justify-content-center align-items-center create-question">
+            <form class="justify-content-center align-items-center" id="form_submit_question">
+                <div class="mb-3">
+                    <label for="" class="form-label">Título:</label>
+                    <input type="text" name="question_title" id="question_title" class="form-control" placeholder="" aria-describedby="helpId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Comando da Questão:</label>
+                    <textarea type="text" name="question_statement" id="question_statement" class="form-control" placeholder="" aria-describedby="helpId" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Alternativas:</label>
+                    <div id="alternatives">
+                        <input type="text"
+                        class="form-control mb-3" id="alternative_1" aria-describedby="helpId" placeholder="Alternativa correta!" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button id="button-function" type="button" onClick="add_alternative()" class="btn btn-primary">Adicionar Alternativa</button>
+                    <button type="submit" class="btn btn-primary">Enviar Questão</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+   <script src="/js/create_question_form.js"></script>
+{% endblock %}
