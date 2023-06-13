@@ -1,0 +1,73 @@
+{% extends 'principal/principal_base.njk' %}
+{% block breadcrumb %}
+  {{ super() }}
+  <li class="breadcrumb-item">Alunos</li>
+  <li class="breadcrumb-item active">
+    {% if student %}
+      {{ student.id }}
+    {% else %}
+      Novo Aluno
+    {% endif %}
+  </li>
+{% endblock %}
+{% block content %}
+  <h1>
+    {% if student %}
+      Ver Aluno
+    {% else %}
+      Novo Aluno
+    {% endif %}
+  </h1>
+  <div class="row">
+    <div class="col-md-4">
+      <img id="profilePicture" src="{% if student.profilePictureUrl %}{{ student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
+    </div>
+    <div class="col-md-8">
+      <form action="students{% if student %}/{{ student.id }}{% endif %}" method="post">
+        <div class="mb-2">
+          <label for="name" class="form-label">Nome</label>
+          <input type="text" class="form-control" name="name" id="name" aria-describedby="" placeholder="" required value="{% if student %}{{ student.name }}{% endif %}"/>
+        </div>
+        <div class="mb-2">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="" placeholder="" required value="{% if student %}{{ student.email }}{% endif %}"/>
+        </div>
+        <div class="mb-2">
+          <label for="name" class="form-label">Foto de Perfil</label>
+          <input type="url" class="form-control" name="profilePictureUrl" id="profilePictureUrl" aria-describedby="" placeholder="" value="{% if student %}{{ student.profilePictureUrl }}{% endif %}"/>
+        </div>
+        {% if not student %}
+          <div class="mb-2">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="" required/>
+          </div>
+          <div class="mb-2">
+            <label for="password" class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="" required/>
+          </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary btn-submit">
+          {% if not student %}
+            Cadastrar
+          {% else %}
+            Atualizar
+          {% endif %}
+        </button>
+      </form>
+    </div>
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => { // Get the necessary elements
+        const urlInput = document.getElementById('profilePictureUrl');
+        const imgElement = document.getElementById('profilePicture');
+        // Add event listener to the input field
+        urlInput.addEventListener('input', (event) => {
+          let newSrc = event.target.value;
+          if (newSrc.trim() == '') {
+            newSrc = '/img/defaultuser.png';
+          }
+          imgElement.src = newSrc;
+        });
+      });
+    </script>
+  </div>
+{% endblock %}

@@ -51,6 +51,10 @@ const getAllStudents = async () => {
   return useApi('/students');
 };
 
+const getStudentById = async (id) => {
+  return useApi(`/students/${id}`);
+};
+
 module.exports = {
   get_all_questions,
   get_question,
@@ -59,4 +63,5 @@ module.exports = {
   get_all_classes,
   get_class,
   getAllStudents,
+  getStudentById,
 };

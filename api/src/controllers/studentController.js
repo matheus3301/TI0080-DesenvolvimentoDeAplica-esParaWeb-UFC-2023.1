@@ -1,12 +1,14 @@
 const prisma = require('../configuration/database');
 const { Prisma } = require('@prisma/client');
 const HttpStatus = require('http-status-codes').StatusCodes;
+const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 
 const createStudent = async (req, res) => {
   try {
     const { name, profilePictureUrl, email, password, confirmPassword } =
       req.body;
 
+    console.log(name);
     // Check if password and confirmPassword match
     if (password !== confirmPassword) {
       return res
@@ -14,7 +16,7 @@ const createStudent = async (req, res) => {
         .json({ error: 'Senha não confere' });
     }
 
-    const student = await prisma.student.create({
+    let student = await prisma.student.create({
       data: {
         name,
         profilePictureUrl,
@@ -26,7 +28,12 @@ const createStudent = async (req, res) => {
           },
         },
       },
+      include: {
+        credentials: true,
+      },
     });
+
+    student = sanitizeUserObject(student);
 
     res.json(student);
   } catch (error) {
@@ -46,11 +53,14 @@ const createStudent = async (req, res) => {
 
 const getAllStudents = async (req, res) => {
   try {
-    const students = await prisma.student.findMany({
+    let students = await prisma.student.findMany({
       include: {
         enrollments: true,
+        credentials: true,
       },
     });
+
+    students = students.map(sanitizeUserObject);
 
     res.json(students);
   } catch (error) {
