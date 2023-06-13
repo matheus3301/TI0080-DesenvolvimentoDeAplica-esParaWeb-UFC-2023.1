@@ -60,7 +60,7 @@ const getAllQuestions = async (req, res) => {
       questions = await prisma.question.findMany();
     }
 
-    questionsWithoutAnswer = questions.map(removeQuestionAnswer);
+    // questionsWithoutAnswer = questions.map(removeQuestionAnswer);
 
     res.json(questions);
   } catch (error) {
