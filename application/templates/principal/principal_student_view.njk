@@ -23,7 +23,7 @@
       <img id="profilePicture" src="{% if student.profilePictureUrl %}{{ student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
     </div>
     <div class="col-md-8">
-      <form id='form_submit_question'>
+      <form id='form_submit_question' name="{% if student %}edit{% else %}create{% endif %}">
         <div class="mb-2">
           <label for="name" class="form-label">Nome</label>
           <input type="text" class="form-control" name="name" id="name" aria-describedby="" placeholder="" required value="{% if student %}{{ student.name }}{% endif %}"/>

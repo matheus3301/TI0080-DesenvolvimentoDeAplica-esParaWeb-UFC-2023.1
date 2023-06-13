@@ -24,7 +24,7 @@ async function submit_question(event) {
     let alternatives = document.getElementById('alternatives');
     let post_json = {
         title: title,
-        teacher: 2,
+        teacher: 1,
         statement: statement,
         choices: [
         ]
@@ -44,9 +44,14 @@ async function submit_question(event) {
     xmlhttp.open("POST", apiUrl);
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send(JSON.stringify(post_json));
-
-    alert('Questão criada com sucesso!');
-    location.reload();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            alert('Questão criada com sucesso!');
+            location.reload();
+        } else if (this.readyState == 4 && this.status != 200) {
+            alert('Erro na criação da questão!');
+        }
+    };
 }
 
 const form = document.getElementById("form_submit_question");
