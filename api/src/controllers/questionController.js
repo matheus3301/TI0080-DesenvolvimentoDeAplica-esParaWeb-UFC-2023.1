@@ -36,11 +36,29 @@ const createQuestion = async (req, res) => {
 // Get all questions
 const getAllQuestions = async (req, res) => {
   try {
-    const questions = await prisma.question.findMany({
-      include: {
-        choices: true,
-      },
-    });
+    let query = req.query.query;
+    let questions = null;
+
+    if (query) {
+      questions = await prisma.question.findMany({
+        where: {
+          OR: [
+            {
+              title: {
+                contains: query,
+              },
+            },
+            {
+              statement: {
+                contains: query,
+              },
+            },
+          ],
+        },
+      });
+    } else {
+      questions = await prisma.question.findMany();
+    }
 
     questionsWithoutAnswer = questions.map(removeQuestionAnswer);
 
