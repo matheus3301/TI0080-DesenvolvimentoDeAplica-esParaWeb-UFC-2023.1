@@ -23,7 +23,7 @@
       <img id="profilePicture" src="{% if student.profilePictureUrl %}{{ student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
     </div>
     <div class="col-md-8">
-      <form action="students{% if student %}/{{ student.id }}{% endif %}" method="post">
+      <form id='form_submit_question'>
         <div class="mb-2">
           <label for="name" class="form-label">Nome</label>
           <input type="text" class="form-control" name="name" id="name" aria-describedby="" placeholder="" required value="{% if student %}{{ student.name }}{% endif %}"/>
@@ -55,19 +55,9 @@
         </button>
       </form>
     </div>
-    <script>
-      window.addEventListener('DOMContentLoaded', (event) => { // Get the necessary elements
-        const urlInput = document.getElementById('profilePictureUrl');
-        const imgElement = document.getElementById('profilePicture');
-        // Add event listener to the input field
-        urlInput.addEventListener('input', (event) => {
-          let newSrc = event.target.value;
-          if (newSrc.trim() == '') {
-            newSrc = '/img/defaultuser.png';
-          }
-          imgElement.src = newSrc;
-        });
-      });
-    </script>
   </div>
+{% endblock %}
+
+{% block scripts %}
+   <script src="/js/create_student_form.js"></script>
 {% endblock %}

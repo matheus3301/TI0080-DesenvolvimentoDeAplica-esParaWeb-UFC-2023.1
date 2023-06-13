@@ -20,14 +20,15 @@ principalRouter.get('/teachers', async (req, res) => {
 });
 
 principalRouter.get('/students', async (req, res) => {
-  let students = await getAllStudents();
-  students.forEach((student) => {
+  let students_data = await getAllStudents();
+  students_data.forEach((student) => {
     student.enrollments = student.enrollments.length;
   });
 
   const content = {
     name: 'Matheus',
-    students: students,
+    students: true,
+    students_data: students_data,
   };
 
   res.render('principal/principal_students.njk', content);
@@ -36,6 +37,7 @@ principalRouter.get('/students', async (req, res) => {
 principalRouter.get('/students/new', async (req, res) => {
   const content = {
     name: 'Matheus',
+    students: true,
   };
 
   res.render('principal/principal_student_view.njk', content);
@@ -46,6 +48,7 @@ principalRouter.get('/students/:id', async (req, res) => {
 
   const content = {
     name: 'Matheus',
+    students: true,
     student: await getStudentById(id),
   };
 

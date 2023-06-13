@@ -45,7 +45,8 @@ async function submit_question(event) {
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send(JSON.stringify(post_json));
 
-    location.href = '/teacher/dashboard/questions/';
+    alert('Questão criada com sucesso!');
+    location.reload();
 }
 
 const form = document.getElementById("form_submit_question");
