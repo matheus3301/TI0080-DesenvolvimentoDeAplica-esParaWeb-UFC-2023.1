@@ -1,32 +1,40 @@
 const principalRouter = require('express').Router();
-const { get_all_questions, get_all_classes } = require('../../../services/api');
+const { getAllStudents } = require('../../../services/api');
 
-principalRouter.get('/dashboard', (req, res) => {
+principalRouter.get('/', (req, res) => {
   let content = {
     name: 'Matheus',
     dashboard: true,
   };
 
-  res.render('principal/principal_dashboard.njk', content)
-})
+  res.render('principal/principal_dashboard.njk', content);
+});
 
 principalRouter.get('/teachers', async (req, res) => {
   let content = {
     name: 'Matheus',
-    teachers: true
+    teachers: true,
   };
 
-  res.render('principal/principal_teachers.njk', content)
-})
+  res.render('principal/principal_teachers.njk', content);
+});
 
-principalRouter.get('/students', (req, res) => {
+principalRouter.get('/students', async (req, res) => {
+  let students = await getAllStudents();
+  students = students.map((student) => {
+    return {
+      id: student.id,
+      name: student.name,
+      enrollments: student.enrollments.length,
+    };
+  });
+
   let content = {
     name: 'Matheus',
-    students: true,
+    students: students,
   };
 
-  res.render('principal/principal_students.njk', content)
-})
-
+  res.render('principal/principal_students.njk', content);
+});
 
 module.exports = principalRouter;

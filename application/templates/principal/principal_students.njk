@@ -1,1 +1,50 @@
-{% extends 'principal/principal_base.njk' %}
+{% extends 'principal/principal_base.njk' %} {% block breadcrumb %}
+{{ super() }}
+<li class="breadcrumb-item active">Alunos</li>
+{% endblock %} {% block content %}
+<h1>Alunos</h1>
+<div class="table-responsive-md">
+  <table class="table table-striped table-hover table-bordered align-middle">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Turmas Matriculadas</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for student in students %}
+      <tr class="">
+        <td scope="row">{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.enrollments }}</td>
+        <td>
+          <a
+            name="delete"
+            id="delete"
+            class="btn btn-danger"
+            href=""
+            role="button"
+            ><i class="bi bi-trash"></i>Deletar</a
+          >
+          <a
+            name="more"
+            id="more"
+            class="btn btn-primary"
+            href="students/{{ student.id }}"
+            role="button"
+            ><i class="bi bi-three-dots-vertical"></i>Ver Mais</a
+          >
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4">Não há estudantes cadastrados...</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+</div>
+{% endblock %}

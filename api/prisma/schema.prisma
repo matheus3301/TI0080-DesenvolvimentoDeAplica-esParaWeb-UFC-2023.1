@@ -59,7 +59,7 @@ model Student {
   profilePictureUrl String?
 
   credentials Credentials[]
-  Enrollment  Enrollment[]
+  enrollments Enrollment[]
 }
 
 model Question {

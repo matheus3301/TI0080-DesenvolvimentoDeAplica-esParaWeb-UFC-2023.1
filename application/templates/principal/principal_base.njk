@@ -1,27 +1,24 @@
 {% extends 'base.njk' %}
-
 {% block title %}
     <title>Diretor | SmartTrivia</title>
 {% endblock %}
-
 {% block side_list %}
-    <li
-    class="list-group-item d-flex justify-content-between align-items-center {% if dashboard %}active{% endif %}"
-    >
-        <a href="/principal/dashboard"> Menu Principal </a>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/principal/dashboard">
+            Menu Principal
+        </a>
     </li>
-    <li
-    class="list-group-item d-flex justify-content-between align-items-center {% if teachers %}active{% endif %}"
-    >
-        <a href="/principal/teachers"> Professores </a>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/principal/teachers">
+            Professores
+        </a>
     </li>
-    <li
-    class="list-group-item d-flex justify-content-between align-items-center {% if students %}active{% endif %}"
-    >
-        <a href="/principal/students"> Alunos </a>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="/principal/students">
+            Alunos
+        </a>
     </li>
 {% endblock %}
-
 {% block breadcrumb %}
-    <li class="breadcrumb-item">Diretor</li>
+<li class="breadcrumb-item">Diretor</li>
 {% endblock%}

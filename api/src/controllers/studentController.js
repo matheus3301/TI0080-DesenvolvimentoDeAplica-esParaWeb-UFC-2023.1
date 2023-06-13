@@ -15,13 +15,15 @@ const createStudent = async (req, res) => {
     }
 
     const student = await prisma.student.create({
-      name,
-      profilePictureUrl,
-      credentials: {
-        create: {
-          email,
-          password,
-          type: 'STUDENT',
+      data: {
+        name,
+        profilePictureUrl,
+        credentials: {
+          create: {
+            email,
+            password,
+            type: 'STUDENT',
+          },
         },
       },
     });
@@ -44,7 +46,11 @@ const createStudent = async (req, res) => {
 
 const getAllStudents = async (req, res) => {
   try {
-    const students = await prisma.student.findMany();
+    const students = await prisma.student.findMany({
+      include: {
+        enrollments: true,
+      },
+    });
 
     res.json(students);
   } catch (error) {
