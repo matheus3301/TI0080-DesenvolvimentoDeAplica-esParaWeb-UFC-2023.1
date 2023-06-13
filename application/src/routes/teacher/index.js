@@ -1,6 +1,5 @@
-const fetch = require("node-fetch");
 const teacherRouter = require('express').Router();
-const { get_all_questions } = require('../../../services/api');
+const { get_all_questions, get_all_classes } = require('../../../services/api');
 
 teacherRouter.get('/dashboard', (req, res) => {
   let content = {
@@ -10,10 +9,12 @@ teacherRouter.get('/dashboard', (req, res) => {
   res.render('teacher/teacher_base.njk', content)
 })
 
-teacherRouter.get('/dashboard/classes', (req, res) => {
+teacherRouter.get('/dashboard/classes', async (req, res) => {
+  let classes_data = await get_all_classes();
   let content = {
     name: 'Matheus',
     classes: true,
+    classes_data: classes_data,
   };
 
   res.render('teacher/teacher_classes.njk', content)
@@ -29,7 +30,7 @@ teacherRouter.get('/dashboard/tests', (req, res) => {
 })
 
 teacherRouter.get('/dashboard/questions', async (req, res) => {
-  let questions_data = get_all_questions();
+  let questions_data = await get_all_questions();
 
   let content = {
     name: 'Matheus',
