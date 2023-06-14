@@ -129,7 +129,7 @@ const updateTeacherById = async (req, res) => {
 
     res.status(HttpStatus.ACCEPTED).json(updated);
   } catch (error) {
-    console.error('Error updating question:', error);
+    console.error('Error updating teacher:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
       .json({ error: 'Erro ao atualizar professor' });

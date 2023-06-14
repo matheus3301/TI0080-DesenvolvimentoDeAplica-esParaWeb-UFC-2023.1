@@ -99,9 +99,41 @@ const getStudentById = async (req, res) => {
 };
 
 const updateStudentById = async (req, res) => {
-  res.status(HttpStatus.NOT_IMPLEMENTED).json({
-    error: 'Funcionalidade ainda não implementada',
-  });
+  try {
+    const { id } = req.params;
+    const { name, email, profilePictureUrl } = req.body;
+
+    let updated = prisma.student.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        profilePictureUrl,
+        name,
+        credentials: {
+          update: {
+            data: {
+              email,
+            },
+          },
+        },
+      },
+
+      include: {
+        enrollments: true,
+        credentials: true,
+      },
+    });
+
+    updated = sanitizeUserObject(updated);
+
+    res.status(HttpStatus.ACCEPTED).json(updated);
+  } catch (error) {
+    console.error('Error updating student:', error);
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Erro ao atualizar aluno' });
+  }
 };
 
 const deleteStudentById = async (req, res) => {
