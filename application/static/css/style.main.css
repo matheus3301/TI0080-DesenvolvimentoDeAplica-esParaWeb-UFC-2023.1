@@ -150,7 +150,14 @@ a {
 }
 
 .card-text {
+  display: -webkit-box;
   margin: 0;
+  overflow: hidden;
+  line-height: 1.2em;
+  height: 6em;
+  text-align: justify;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .add-button {
