@@ -24,7 +24,7 @@ async function submit_question(event) {
     let alternatives = document.getElementById('alternatives');
     let post_json = {
         title: title,
-        teacher: 1,
+        teacher: 45435345,
         statement: statement,
         choices: [
         ]

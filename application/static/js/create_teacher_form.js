@@ -13,10 +13,12 @@ async function submit_question(event) {
 
     let id = document.getElementById('id').value;
     let name = document.getElementById('name').value;
+    let cpf = document.getElementById('cpf').value;
     let email = document.getElementById('email').value;
     let profilePictureUrl = document.getElementById('profilePictureUrl').value;
     let post_json = {
         name: name,
+        cpf: cpf,
         email: email,
         profilePictureUrl: profilePictureUrl,
     }
@@ -32,18 +34,19 @@ async function submit_question(event) {
       id_url = `/${id}`;
     }
 
+
     let xmlhttp = new XMLHttpRequest();
-    let apiUrl = "http://localhost:7777/students" + id_url;
+    let apiUrl = `http://localhost:7777/teachers` + id_url;
 
     xmlhttp.open(method, apiUrl);
     xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlhttp.send(JSON.stringify(post_json));
     xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200 || this.status == 201) {
-          alert(`Estudante ${method == "POST" ? 'cadastrado' : 'atualizado'} com sucesso!`);
+      if (this.readyState == 4 && (this.status == 201 || this.status == 200)) {
+          alert(`Professor ${method == "POST" ? 'cadastrado' : 'atualizado'} com sucesso!`);
           location.reload();
-      } else if (this.readyState == 4 && this.status != 200 || this.status == 201) {
-          alert('Erro no cadastro do estudante!');
+      } else if (this.readyState == 4 && (this.status != 201 || this.status == 200)) {
+          alert('Erro no cadastro do professor!');
       }
   };
 }

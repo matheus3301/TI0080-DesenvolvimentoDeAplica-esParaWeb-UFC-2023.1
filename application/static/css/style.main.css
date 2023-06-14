@@ -6,7 +6,7 @@
   --accent: #ff9800;
   --text: #000000;
   --text-secondary: #333333;
-  --text-tertiary: #808080;
+  --text-tertiary: #808080; 
 }
 
 html,
@@ -283,4 +283,12 @@ ul {
 
 textarea {
   resize: none;
+}
+
+.btn {
+  font-size: 1em;
+}
+
+input {
+  font-size: 1em !important;
 }

@@ -2,7 +2,7 @@
   --background: #ffffff;
   --primary: #000000;
   --secondary: #ff0000;
-  --accent: #00ff00;
+  --accent: #00b200;
   --text: #000000;
   --text-secondary: #333333;
   --text-tertiary: #808080;
@@ -283,4 +283,12 @@ ul {
 
 textarea {
   resize: none;
+}
+
+.btn {
+  font-size: 1em;
+}
+
+input {
+  font-size: 1em !important;
 }

@@ -21,18 +21,12 @@ const get_question = async (id) => {
   return question_data;
 };
 
-const get_teachers = async () => {
-  let teachers_data = [];
-  teachers_data = await fetch('http://localhost:7777/teachers');
-  teachers_data = await teachers_data.json();
-  return teachers_data;
+const getTeacherById = async (id) => {
+  return useApi(`/teachers/${id}`);
 };
 
-const get_teacher = async (id) => {
-  let teacher_data = [];
-  teacher_data = await fetch('http://localhost:7777/teachers/' + id);
-  teacher_data = await teacher_data.json();
-  return teacher_data;
+const getAllTeachers= async () => {
+  return useApi('/teachers');
 };
 
 const get_classes = async () => {
@@ -60,10 +54,10 @@ const getStudentById = async (id) => {
 module.exports = {
   get_questions,
   get_question,
-  get_teachers,
-  get_teacher,
   get_classes,
   get_class,
+  getAllTeachers,
+  getTeacherById,
   getAllStudents,
   getStudentById,
 };

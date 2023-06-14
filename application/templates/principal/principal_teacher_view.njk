@@ -1,0 +1,73 @@
+{% extends 'principal/principal_base.njk' %}
+{% block breadcrumb %}
+  {{ super() }}
+  <li class="breadcrumb-item">Professores</li>
+  <li class="breadcrumb-item active">
+    {% if teacher %}
+      {{ teacher.id }}
+    {% else %}
+      Novo Professor
+    {% endif %}
+  </li>
+{% endblock %}
+{% block content %}
+  <div class="questions-header">
+    <h1>
+      {% if student %}
+        Ver Professor
+      {% else %}
+        Novo Professor
+      {% endif %}
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <img id="profilePicture" src="{% if teacher.profilePictureUrl %}{{ teacher.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
+    </div>
+    <div class="col-md-8">
+      <form id='form_submit_question' name="{% if teacher %}edit{% else %}create{% endif %}">
+        <div class="mb-2">
+          <label for="id" class="form-label">ID</label>
+          <input type="text" class="form-control" name="id" id="id"  value="{% if teacher %}{{ teacher.id }}{% endif %}" disabled/>
+        </div>
+        <div class="mb-2">
+          <label for="name" class="form-label">Nome</label>
+          <input type="text" class="form-control" name="name" id="name" aria-describedby="" placeholder="" required value="{% if teacher %}{{ teacher.name }}{% endif %}"/>
+        </div>
+        <div class="mb-2">
+          <label for="cpf" class="form-label">CPF</label>
+          <input type="cpf" class="form-control" name="cpf" id="cpf" aria-describedby="" placeholder="" required value="{% if teacher %}{{ teacher.cpf }}{% endif %}"/>
+        </div>
+        <div class="mb-2">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="" placeholder="" required value="{% if teacher %}{{ teacher.email }}{% endif %}"/>
+        </div>
+        <div class="mb-2">
+          <label for="name" class="form-label">Foto de Perfil</label>
+          <input type="url" class="form-control" name="profilePictureUrl" id="profilePictureUrl" aria-describedby="" placeholder="" value="{% if teacher %}{{ teacher.profilePictureUrl }}{% endif %}"/>
+        </div>
+        {% if not teacher %}
+          <div class="mb-2">
+            <label for="password" class="form-label">Senha</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="" required/>
+          </div>
+          <div class="mb-2">
+            <label for="password" class="form-label">Confirmar Senha</label>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="" required/>
+          </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary btn-submit">
+          {% if not teacher %}
+            Cadastrar
+          {% else %}
+            Atualizar
+          {% endif %}
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/js/create_teacher_form.js"></script>
+{% endblock %}
