@@ -119,7 +119,7 @@ const updateStudentById = async (req, res) => {
         name,
       },
       include: {
-        classes: true,
+        enrollments: true,
         credentials: true,
       },
     });
