@@ -11,7 +11,7 @@ async function submit_question(event) {
       method="PUT"
     }
 
-    let id = document.getElementById('id').value;
+    let id = document.getElementById('id')?.value;
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let profilePictureUrl = document.getElementById('profilePictureUrl').value;

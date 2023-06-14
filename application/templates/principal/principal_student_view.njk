@@ -26,10 +26,12 @@
     </div>
     <div class="col-md-8">
       <form id='form_submit_question' name="{% if student %}edit{% else %}create{% endif %}">
-        <div class="mb-2">
-          <label for="id" class="form-label">ID</label>
-          <input type="text" class="form-control" name="id" id="id"  value="{% if student %}{{ student.id }}{% endif %}" disabled/>
-        </div>
+        {% if student %}
+          <div class="mb-2">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class="form-control" name="id" id="id"  value="{% if student %}{{ student.id }}{% endif %}" disabled/>
+          </div>
+        {% endif %}
         <div class="mb-2">
           <label for="name" class="form-label">Nome</label>
           <input type="text" class="form-control" name="name" id="name" aria-describedby="" placeholder="" required value="{% if student %}{{ student.name }}{% endif %}"/>
