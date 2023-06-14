@@ -101,11 +101,9 @@ const updateTeacherById = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, email, cpf, profilePictureUrl } = req.body;
-
+    console.log(id);
     let updated = prisma.teacher.update({
-      where: {
-        id: parseInt(id),
-      },
+      where: { id: parseInt(id) },
       data: {
         cpf,
         profilePictureUrl,
@@ -127,7 +125,7 @@ const updateTeacherById = async (req, res) => {
 
     // updated = sanitizeUserObject(updated);
 
-    res.status(HttpStatus.ACCEPTED).json(updated);
+    res.status(HttpStatus.OK).json(updated);
   } catch (error) {
     console.error('Error updating teacher:', error);
     res
