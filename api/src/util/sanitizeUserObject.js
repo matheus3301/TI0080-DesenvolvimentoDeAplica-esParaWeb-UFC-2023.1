@@ -1,5 +1,7 @@
 const sanitizeUserObject = (user) => {
-  user.email = user.credentials[0].email;
+  for (credentials of user.credentials) {
+    user.email = credentials.email;
+  }
 
   delete user.credentials;
 

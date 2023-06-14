@@ -57,7 +57,7 @@ const getAllTeachers = async (req, res) => {
       },
     });
 
-    teachers = teachers.map(sanitizeUserObject);
+    // teachers = teachers.map(sanitizeUserObject);
 
     res.json(teachers);
   } catch (error) {
@@ -101,22 +101,23 @@ const updateTeacherById = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, email, cpf, profilePictureUrl } = req.body;
+
+    let credentials = await prisma.credentials.updateMany({
+      data: {
+        email: email,
+      },
+      where: {
+        teacherId: parseInt(id),
+      },
+    });
+
     let updated = await prisma.teacher.update({
       where: { id: parseInt(id) },
       data: {
         cpf,
         profilePictureUrl,
         name,
-        credentials: {
-          update: {
-            data: {
-              email,
-            },
-            where: {},
-          },
-        },
       },
-
       include: {
         classes: true,
         credentials: true,
