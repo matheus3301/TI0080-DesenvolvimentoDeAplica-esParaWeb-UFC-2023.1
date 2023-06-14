@@ -20,7 +20,7 @@
   </h1>
   <div class="row">
     <div class="col-md-4">
-      <img id="profilePicture" src="{% if student.profilePictureUrl %}{{ student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
+      <img style="object-fit: cover; width: 350px; height: 350px" id="profilePicture" src="{% if student.profilePictureUrl %}{{ student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
     </div>
     <div class="col-md-8">
       <form id='form_submit_question' name="{% if student %}edit{% else %}create{% endif %}">
@@ -57,7 +57,6 @@
     </div>
   </div>
 {% endblock %}
-
 {% block scripts %}
-   <script src="/js/create_student_form.js"></script>
+  <script src="/js/create_student_form.js"></script>
 {% endblock %}
