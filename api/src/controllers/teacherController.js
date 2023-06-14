@@ -125,7 +125,7 @@ const updateTeacherById = async (req, res) => {
       },
     });
 
-    updated = sanitizeUserObject(updated);
+    // updated = sanitizeUserObject(updated);
 
     res.status(HttpStatus.ACCEPTED).json(updated);
   } catch (error) {
