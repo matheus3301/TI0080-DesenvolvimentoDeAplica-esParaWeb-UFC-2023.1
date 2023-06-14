@@ -22,14 +22,14 @@
   </div>
   <div class="row">
     <div class="col-md-4">
-      <img id="profilePicture" src="{% if teacher.profilePictureUrl %}{{ teacher.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
+      <img style="object-fit: cover; width: 350px; height: 350px" id="profilePicture" src="{% if teacher.profilePictureUrl %}{{ teacher.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
     </div>
     <div class="col-md-8">
       <form id='form_submit_question' name="{% if teacher %}edit{% else %}create{% endif %}">
         {% if teacher %}
           <div class="mb-2">
             <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" name="id" id="id"  value="{% if teacher %}{{ teacher.id }}{% endif %}" disabled/>
+            <input type="text" class="form-control" name="id" id="id" value="{% if teacher %}{{ teacher.id }}{% endif %}" disabled/>
           </div>
         {% endif %}
         <div class="mb-2">
@@ -69,7 +69,6 @@
     </div>
   </div>
 {% endblock %}
-
 {% block scripts %}
   <script src="/js/create_teacher_form.js"></script>
 {% endblock %}
