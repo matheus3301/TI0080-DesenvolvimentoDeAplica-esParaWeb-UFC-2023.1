@@ -1,5 +1,6 @@
 const prisma = require('../configuration/database');
 const { Prisma } = require('@prisma/client');
+const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 const HttpStatus = require('http-status-codes').StatusCodes;
 
 // Create a new teacher
@@ -49,7 +50,14 @@ const createTeacher = async (req, res) => {
 // Get all teachers
 const getAllTeachers = async (req, res) => {
   try {
-    const teachers = await prisma.teacher.findMany();
+    let teachers = await prisma.teacher.findMany({
+      include: {
+        classes: true,
+        credentials: true,
+      },
+    });
+
+    teachers = teachers.map(sanitizeUserObject);
 
     res.json(teachers);
   } catch (error) {
@@ -65,13 +73,19 @@ const getTeacherById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const teacher = await prisma.teacher.findUnique({
+    let teacher = await prisma.teacher.findUnique({
       where: { id: parseInt(id) },
+      include: {
+        classes: true,
+        credentials: true,
+      },
     });
 
     if (!teacher) {
       return res.status(404).json({ error: 'Teacher not found' });
     }
+
+    teacher = sanitizeUserObject(teacher);
 
     res.json(teacher);
   } catch (error) {

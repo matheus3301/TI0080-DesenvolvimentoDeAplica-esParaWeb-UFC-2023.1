@@ -75,13 +75,19 @@ const getStudentById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const student = await prisma.student.findUnique({
+    let student = await prisma.student.findUnique({
       where: { id: parseInt(id) },
+      include: {
+        enrollments: true,
+        credentials: true,
+      },
     });
 
     if (!student) {
       return res.status(404).json({ error: 'Student not found' });
     }
+
+    student = sanitizeUserObject(student);
 
     res.json(student);
   } catch (error) {
