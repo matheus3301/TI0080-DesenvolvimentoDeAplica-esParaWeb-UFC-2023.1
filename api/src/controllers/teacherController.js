@@ -112,6 +112,9 @@ const updateTeacherById = async (req, res) => {
             data: {
               email,
             },
+            where: {
+              email: email,
+            },
           },
         },
       },
