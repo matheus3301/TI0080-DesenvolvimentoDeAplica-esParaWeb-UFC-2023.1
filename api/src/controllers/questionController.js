@@ -6,13 +6,16 @@ const createQuestion = async (req, res) => {
   try {
     const { title, statement, choices, teacher } = req.body;
 
+    //TODO: Get by Session
+    const teacherId = await prisma.teacher.findFirst({});
+
     const question = await prisma.question.create({
       data: {
         title,
         statement,
         teacher: {
           connect: {
-            id: teacher,
+            id: teacherId.id,
           },
         },
         choices: {
