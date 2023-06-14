@@ -5,20 +5,12 @@ const useApi = async (endpoint, method, body) => {
   return await response.json();
 };
 
-const get_questions = async (query) => {
-  let questions_data = [];
-  questions_data = await fetch(
-    `http://localhost:7777/questions${query ? `?query=${query}` : ''}`
-  );
-  questions_data = await questions_data.json();
-  return questions_data;
+const getQuestions = async (query) => {
+  return useApi(`/questions${query ? `?query=${query}` : ''}`);
 };
 
-const get_question = async (id) => {
-  let question_data = [];
-  question_data = await fetch('http://localhost:7777/questions/' + id);
-  question_data = await question_data.json();
-  return question_data;
+const getQuestionByID = async (id) => {
+  return useApi(`/questions/${id}`);
 };
 
 const getTeacherById = async (id) => {
@@ -29,18 +21,12 @@ const getAllTeachers= async () => {
   return useApi('/teachers');
 };
 
-const get_classes = async () => {
-  let classes_data = [];
-  classes_data = await fetch('http://localhost:7777/classes');
-  classes_data = await classes_data.json();
-  return classes_data;
+const getAllClasses = async () => {
+  return useApi(`/classes/`);
 };
 
-const get_class = async (id) => {
-  let class_data = [];
-  class_data = await fetch('http://localhost:7777/classes/' + id);
-  class_data = await class_data.json();
-  return class_data;
+const getClassByID = async (id) => {
+  return useApi(`/classes/${id}`);
 };
 
 const getAllStudents = async () => {
@@ -52,10 +38,10 @@ const getStudentById = async (id) => {
 };
 
 module.exports = {
-  get_questions,
-  get_question,
-  get_classes,
-  get_class,
+  getQuestions,
+  getQuestionByID,
+  getAllClasses,
+  getClassByID,
   getAllTeachers,
   getTeacherById,
   getAllStudents,

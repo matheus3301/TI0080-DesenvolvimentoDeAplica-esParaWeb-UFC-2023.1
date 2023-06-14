@@ -1,5 +1,5 @@
 const teacherRouter = require('express').Router();
-const { get_questions, get_classes } = require('../../../services/api');
+const { getQuestions, getAllClasses } = require('../../../services/api');
 
 teacherRouter.get('/dashboard', (req, res) => {
   let content = {
@@ -10,7 +10,7 @@ teacherRouter.get('/dashboard', (req, res) => {
 })
 
 teacherRouter.get('/dashboard/classes', async (req, res) => {
-  let classes_data = await get_classes();
+  let classes_data = await getAllClasses();
   let content = {
     name: 'Matheus',
     classes: true,
@@ -31,7 +31,7 @@ teacherRouter.get('/dashboard/tests', (req, res) => {
 
 teacherRouter.get('/dashboard/questions', async (req, res) => {
   let query = req.query.query;
-  let questions_data = await get_questions(query);
+  let questions_data = await getQuestions(query);
   let content = {
     name: 'Matheus',
     questions: true,
