@@ -57,7 +57,7 @@ const getAllTeachers = async (req, res) => {
       },
     });
 
-    // teachers = teachers.map(sanitizeUserObject);
+    teachers = teachers.map(sanitizeUserObject);
 
     res.json(teachers);
   } catch (error) {
