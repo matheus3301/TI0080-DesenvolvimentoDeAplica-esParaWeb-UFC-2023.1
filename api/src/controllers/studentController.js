@@ -103,36 +103,35 @@ const updateStudentById = async (req, res) => {
     const { id } = req.params;
     const { name, email, profilePictureUrl } = req.body;
 
-    let updated = prisma.student.update({
-      where: {
-        id: parseInt(id),
+    let credentials = await prisma.credentials.updateMany({
+      data: {
+        email: email,
       },
+      where: {
+        studentId: parseInt(id),
+      },
+    });
+
+    let updated = await prisma.student.update({
+      where: { id: parseInt(id) },
       data: {
         profilePictureUrl,
         name,
-        credentials: {
-          update: {
-            data: {
-              email,
-            },
-          },
-        },
       },
-
       include: {
-        enrollments: true,
+        classes: true,
         credentials: true,
       },
     });
 
     updated = sanitizeUserObject(updated);
 
-    res.status(HttpStatus.ACCEPTED).json(updated);
+    res.status(HttpStatus.OK).json(updated);
   } catch (error) {
-    console.error('Error updating student:', error);
+    console.error('Error updating teacher:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Erro ao atualizar aluno' });
+      .json({ error: 'Erro ao atualizar professor' });
   }
 };
 
