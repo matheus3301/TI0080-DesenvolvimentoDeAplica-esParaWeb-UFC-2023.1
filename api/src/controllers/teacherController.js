@@ -31,7 +31,7 @@ const createTeacher = async (req, res) => {
       },
     });
 
-    res.json(teacher);
+    res.status(HttpStatus.CREATED).json(teacher);
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
@@ -98,32 +98,42 @@ const getTeacherById = async (req, res) => {
 
 // Update a teacher by ID
 const updateTeacherById = async (req, res) => {
-  // try {
-  //   const { id } = req.params;
-  //   const { name, cpf, email, password, profilePictureUrl } = req.body;
+  try {
+    const { id } = req.params;
+    const { name, email, cpf, profilePictureUrl } = req.body;
 
-  //   const teacher = await prisma.teacher.update({
-  //     where: { id: parseInt(id) },
-  //     data: {
-  //       name,
-  //       cpf,
-  //       email,
-  //       password,
-  //       profilePictureUrl,
-  //     },
-  //   });
+    let updated = prisma.teacher.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        cpf,
+        profilePictureUrl,
+        name,
+        credentials: {
+          update: {
+            data: {
+              email,
+            },
+          },
+        },
+      },
 
-  //   res.json(teacher);
-  // } catch (error) {
-  //   console.error('Error updating teacher:', error);
-  //   res
-  //     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-  //     .json({ error: 'Erro ao atualizar professor' });
-  // }
+      include: {
+        classes: true,
+        credentials: true,
+      },
+    });
 
-  res.status(HttpStatus.NOT_IMPLEMENTED).json({
-    error: 'Funcionalidade ainda não implementada',
-  });
+    updated = sanitizeUserObject(updated);
+
+    res.status(HttpStatus.ACCEPTED).json(updated);
+  } catch (error) {
+    console.error('Error updating question:', error);
+    res
+      .status(HttpStatus.INTERNAL_SERVER_ERROR)
+      .json({ error: 'Erro ao atualizar professor' });
+  }
 };
 
 // Delete a teacher by ID
