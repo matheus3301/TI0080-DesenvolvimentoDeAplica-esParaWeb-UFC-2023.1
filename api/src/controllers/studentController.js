@@ -8,7 +8,9 @@ const createStudent = async (req, res) => {
     const { name, profilePictureUrl, email, password, confirmPassword } =
       req.body;
 
-    console.log(name);
+    email = email.trim();
+    password = password.trim();
+    confirmPassword = confirmPassword.trim();
     // Check if password and confirmPassword match
     if (password !== confirmPassword) {
       return res

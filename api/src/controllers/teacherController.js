@@ -9,6 +9,10 @@ const createTeacher = async (req, res) => {
     const { name, cpf, email, password, confirmPassword, profilePictureUrl } =
       req.body;
 
+    email = email.trim();
+    password = password.trim();
+    confirmPassword = confirmPassword.trim();
+
     // Check if password and confirmPassword match
     if (password !== confirmPassword) {
       return res
