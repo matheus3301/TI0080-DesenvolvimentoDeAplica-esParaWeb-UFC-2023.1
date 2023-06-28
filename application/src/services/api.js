@@ -13,7 +13,11 @@ const auth = {
   },
 
   validate: async ({ token }) => {
-    let response = await instance.post('/auth/validate', { token });
+    let response = await instance.post('/auth/validate', null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   },
 };

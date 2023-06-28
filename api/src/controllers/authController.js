@@ -73,7 +73,7 @@ const login = async (req, res) => {
   );
 
   res.json({
-    access_token: token,
+    token,
     userId,
     userType: user.type,
   });
