@@ -1,18 +1,13 @@
 {% extends 'teacher/base.njk' %}
-
 {% block breadcrumb %}
     {{ super() }}
     <li class="breadcrumb-item active">Minhas Turmas</li>
-{% endblock%}
-
+{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col-md-12 questions-header">
             <h1>Minhas Turmas</h1>
-            <a
-            href="/pages/teacher/questions/create_question.html"
-            class="btn btn-primary btn-submit mb-4"
-            >
+            <a href="/teacher/questions/create_question" class="btn btn-primary btn-submit mb-4">
                 <i class="bi bi-person-plus"></i>Adicionar Novo
             </a>
         </div>

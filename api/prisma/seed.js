@@ -2,9 +2,31 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
+  await createPrincipals();
   await createTeachers();
   await createStudents();
   await createQuestions();
+}
+
+async function createPrincipals() {
+  await prisma.admin.deleteMany({});
+  await prisma.admin.create({
+    data: {
+      name: 'Jardel Silveira',
+      profilePictureUrl:
+        'https://deti.ufc.br/wp-content/uploads/2020/11/jardel-150x150.png',
+      credentials: {
+        create: {
+          email: 'jardel@gmail.com',
+          password: '123123',
+          type: 'PRINCIPAL',
+        },
+      },
+    },
+    include: {
+      credentials: true,
+    },
+  });
 }
 
 async function createQuestions() {

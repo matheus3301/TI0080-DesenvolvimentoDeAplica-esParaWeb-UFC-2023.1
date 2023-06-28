@@ -1,7 +1,7 @@
 const teacherRouter = require('express').Router();
 const { getQuestions, getAllClasses } = require('../services/api');
 
-teacherRouter.get('/dashboard', (req, res) => {
+teacherRouter.get('/', (req, res) => {
   let content = {
     name: 'Matheus',
   };
@@ -9,7 +9,7 @@ teacherRouter.get('/dashboard', (req, res) => {
   res.render('teacher/base.njk', content);
 });
 
-teacherRouter.get('/dashboard/classes', async (req, res) => {
+teacherRouter.get('/classes', async (req, res) => {
   let classes_data = await getAllClasses();
   let content = {
     name: 'Matheus',
@@ -20,7 +20,7 @@ teacherRouter.get('/dashboard/classes', async (req, res) => {
   res.render('teacher/classes.njk', content);
 });
 
-teacherRouter.get('/dashboard/tests', (req, res) => {
+teacherRouter.get('/tests', (req, res) => {
   let content = {
     name: 'Matheus',
     tests: true,
@@ -29,7 +29,7 @@ teacherRouter.get('/dashboard/tests', (req, res) => {
   res.render('teacher/tests.njk', content);
 });
 
-teacherRouter.get('/dashboard/questions', async (req, res) => {
+teacherRouter.get('/questions', async (req, res) => {
   let query = req.query.query;
   let questions_data = await getQuestions(query);
   let content = {
@@ -41,7 +41,7 @@ teacherRouter.get('/dashboard/questions', async (req, res) => {
   res.render('teacher/questions.njk', content);
 });
 
-teacherRouter.get('/dashboard/questions/create', async (req, res) => {
+teacherRouter.get('/questions/create', async (req, res) => {
   let content = {
     name: 'Matheus',
     questions: true,

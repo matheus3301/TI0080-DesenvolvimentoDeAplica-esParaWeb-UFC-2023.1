@@ -11,7 +11,7 @@ const handleLoginForm = async (req, res) => {
   try {
     const response = await api.auth.login({ email, password });
 
-    console.log(`[ ] login sucessfully with token ${response.token}`);
+    console.log(`[ ] login went sucessfully`);
 
     return res
       .cookie('token', response.token, {
@@ -35,10 +35,6 @@ const handleLoginForm = async (req, res) => {
       res.redirect(`/login?error=${encodeURIComponent('Erro desconhecido')}`);
     }
   }
-};
-
-const handleLogout = async (req, res) => {
-  return res.clearCookie('token').redirect('/');
 };
 
 module.exports = {

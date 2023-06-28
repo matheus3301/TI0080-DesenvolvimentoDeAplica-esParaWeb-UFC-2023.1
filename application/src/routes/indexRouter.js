@@ -13,18 +13,19 @@ router.get('/', async (req, res) => {
       switch (userData.userType) {
         case 'TEACHER':
           return res.redirect('/teacher');
-          break;
         case 'STUDENT':
           return res.redirect('/student');
-          break;
         case 'PRINCIPAL':
           return res.redirect('/principal');
-          break;
         default:
           return res.redirect('/login');
       }
     } catch (err) {
-      return res.redirect('/login');
+      return res.redirect(
+        `/login?error=${encodeURIComponent(
+          'Sessão expirada, faça login novamente!'
+        )}`
+      );
     }
   }
 });
