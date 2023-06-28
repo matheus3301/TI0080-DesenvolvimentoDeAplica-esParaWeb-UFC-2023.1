@@ -4,7 +4,8 @@ const HttpStatus = require('http-status-codes').StatusCodes;
 
 const createClass = async (req, res) => {
   try {
-    const { title, description, teacher } = req.body;
+    const { title, description } = req.body;
+    let { userId } = req;
 
     const classs = await prisma.class.create({
       data: {
@@ -12,7 +13,7 @@ const createClass = async (req, res) => {
         description,
         teacher: {
           connect: {
-            id: teacher,
+            id: userId,
           },
         },
       },
@@ -104,18 +105,18 @@ const deleteClassById = async (req, res) => {
 const enrollOnClass = async (req, res) => {
   try {
     const { classId } = req.params;
-    const { studentId } = req.body;
+    const { userId } = req;
 
-    const enrollment = prisma.enrollment.create({
+    const enrollment = await prisma.enrollment.create({
       data: {
         class: {
           connect: {
-            id: classId,
+            id: parseInt(classId),
           },
         },
         student: {
           connect: {
-            id: studentId,
+            id: userId,
           },
         },
       },
