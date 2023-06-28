@@ -22,6 +22,19 @@
     <div class="container login-page">
       <div class="row">
         <div class="login-container">
+          {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <strong>Erro!</strong>
+              {{ error }}
+            </div>
+            <script>
+              var alertList = document.querySelectorAll('.alert');
+              alertList.forEach(function (alert) {
+                new bootstrap.Alert(alert)
+              })
+            </script>
+          {% endif %}
           <h4>Faça Login!</h4>
           <form method="POST">
             <div class="mb-3">

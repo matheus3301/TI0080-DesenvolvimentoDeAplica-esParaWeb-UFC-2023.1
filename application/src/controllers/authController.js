@@ -1,7 +1,9 @@
 const api = require('../services/api');
 
 const loginPage = (req, res) => {
-  res.render('login.njk');
+  let { error } = req.query;
+
+  res.render('login.njk', { error });
 };
 
 const handleLoginForm = async (req, res) => {
