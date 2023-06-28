@@ -6,7 +6,7 @@ const HttpStatus = require('http-status-codes').StatusCodes;
 // Create a new teacher
 const createTeacher = async (req, res) => {
   try {
-    const { name, cpf, email, password, confirmPassword, profilePictureUrl } =
+    let { name, cpf, email, password, confirmPassword, profilePictureUrl } =
       req.body;
 
     email = email.trim();

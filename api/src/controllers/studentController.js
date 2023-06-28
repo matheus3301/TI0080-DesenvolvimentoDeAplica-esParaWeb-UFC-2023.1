@@ -5,7 +5,7 @@ const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 
 const createStudent = async (req, res) => {
   try {
-    const { name, profilePictureUrl, email, password, confirmPassword } =
+    let { name, profilePictureUrl, email, password, confirmPassword } =
       req.body;
 
     email = email.trim();
