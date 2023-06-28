@@ -22,6 +22,36 @@ const auth = {
   },
 };
 
+const principal = {
+  getPersonalInformation: async ({ token }) => {
+    let response = await instance.get('/principals/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  getTeachers: async ({ token }) => {
+    let response = await instance.get('/teachers', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  getStudents: async ({ token }) => {
+    let response = await instance.get('/students', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+};
+
 // const useApi = async (endpoint, method, body) => {
 //   const response = await fetch(baseURL + endpoint);
 
@@ -62,4 +92,5 @@ const auth = {
 
 module.exports = {
   auth,
+  principal,
 };

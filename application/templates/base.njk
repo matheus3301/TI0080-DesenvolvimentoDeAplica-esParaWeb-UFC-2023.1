@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    {% block title %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> {% block title %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
@@ -23,24 +22,41 @@
     {% include "acessibility.njk" %}
     <div class="row teacher-page">
       <nav class="col-md-3 col-lg-2 sidebar teacher-sidebar">
-        <div class="teacher-title py-4 px-3">
-          <h3>Bem-vindo, {{ name }}</h3>
+        <div class="teacher-title py-4 px-3 d-flex">
+          <h3>Painel do
+            {% block user_type %}{% endblock %}
+          </h3>
         </div>
-        <ul class="list-group">
-          {% block side_list %}{% endblock %}
-        </ul>
-      </nav>
-      <div class="col-md-9 col-lg-10 teacher-dashboard">
-        <div class="container mt-5">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              {% block breadcrumb %}{% endblock %}
-            </ol>
-          </nav>
-          {% block content %}{% endblock %}
+        <ul class="list-group d-flex"> {% block side_list %}{% endblock %}
+          </ul>
+        
+          <!-- TODO: Pro vitão fazer: Colocar esse negócio bem no bottom da div, lá embaixo -->
+        <div class="mt-auto user-info d-flex">
+          <div class="row">
+            <div class="col-sm-4">
+              <img src="{% if profilePictureUrl %}{{ profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle mx-auto user-profile-picture" />
+            </div>
+            <div class="col-sm-8">
+              <span>{{name}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <a name="logout" id="logout" class="btn btn-warning" href="/logout" role="button">Logout</a>
+            </div>
+          </div>
         </div>
-      </div>
-      {% block scripts %} 
-      {% endblock %}
-    </body>
-  </html>
+        </nav>
+        <div class="col-md-9 col-lg-10 teacher-dashboard">
+          <div class="container mt-5">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb"> {% block breadcrumb %}{% endblock %}
+                </ol>
+              </nav>
+              {% block content %}{% endblock %}
+            </div>
+          </div>
+          {% block scripts %}{% endblock %}
+        </body>
+      </body>
+    </html>

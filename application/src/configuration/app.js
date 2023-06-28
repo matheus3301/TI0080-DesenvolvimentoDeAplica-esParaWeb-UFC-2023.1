@@ -11,6 +11,10 @@ const teacherRouter = require('../routes/teacherRouter');
 const principalRouter = require('../routes/principalRouter');
 const indexRouter = require('../routes/indexRouter');
 
+const validateTokenMiddleware = require('../middlewares/validateTokenMiddleware');
+const checkUserTypeMiddleware = require('../middlewares/checkUserTypeMiddleware');
+const loadUserDataMiddleware = require('../middlewares/loadUserDataMiddleware');
+
 const app = express();
 
 app.use(cors());
@@ -30,7 +34,19 @@ nunjucks.configure('templates', {
 
 app.use('/', indexRouter);
 app.use('/login', authRouter);
-app.use('/teacher', teacherRouter);
-app.use('/principal', principalRouter);
+app.use(
+  '/teacher',
+  validateTokenMiddleware,
+  checkUserTypeMiddleware(['TEACHER']),
+  loadUserDataMiddleware,
+  teacherRouter
+);
+app.use(
+  '/principal',
+  validateTokenMiddleware,
+  checkUserTypeMiddleware(['PRINCIPAL']),
+  loadUserDataMiddleware,
+  principalRouter
+);
 
 module.exports = app;
