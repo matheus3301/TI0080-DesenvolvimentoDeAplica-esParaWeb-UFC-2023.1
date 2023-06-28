@@ -2,12 +2,14 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const upload = multer();
 
-const authRouter = require('../routes/auth');
-const teacherRouter = require('../routes/teacher');
-const principalRouter = require('../routes/principal');
+const authRouter = require('../routes/authRouter');
+const teacherRouter = require('../routes/teacherRouter');
+const principalRouter = require('../routes/principalRouter');
+const indexRouter = require('../routes/indexRouter');
 
 const app = express();
 
@@ -19,13 +21,15 @@ app.use(
   })
 );
 app.use(upload.array());
+app.use(cookieParser());
 
 nunjucks.configure('templates', {
   autoescape: true,
   express: app,
 });
 
-app.use('/', authRouter);
+app.use('/', indexRouter);
+app.use('/login', authRouter);
 app.use('/teacher', teacherRouter);
 app.use('/principal', principalRouter);
 

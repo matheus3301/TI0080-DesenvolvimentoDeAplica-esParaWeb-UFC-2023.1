@@ -3,6 +3,34 @@ const { Prisma } = require('@prisma/client');
 const HttpStatus = require('http-status-codes').StatusCodes;
 const jwt = require('jsonwebtoken');
 
+const validate = async (req, res) => {
+  let token = req.headers.authorization;
+  if (!token) {
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ message: 'Token de autorização não enviado' });
+  }
+
+  token = token.split(' ');
+  if (token.length != 2) {
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ message: 'Token de autorização inválido' });
+  }
+
+  token = token[1];
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res
+        .status(HttpStatus.UNAUTHORIZED)
+        .json({ message: 'Token de autorização inválido' });
+    }
+
+    return res.json(decoded);
+  });
+};
+
 const login = async (req, res) => {
   let { email, password } = req.body;
 
@@ -53,4 +81,5 @@ const login = async (req, res) => {
 
 module.exports = {
   login,
+  validate,
 };
