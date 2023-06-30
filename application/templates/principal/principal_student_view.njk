@@ -25,11 +25,11 @@
       <img style="object-fit: cover; width: 350px; height: 350px" id="profilePicture" src="{% if student.profilePictureUrl %}{{ student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
     </div>
     <div class="col-md-8">
-      <form id='form_submit_question' name="{% if student %}edit{% else %}create{% endif %}">
+      <form id='form_submit_question' name="{% if student %}edit{% else %}create{% endif %}" method="POST">
         {% if student %}
           <div class="mb-2">
             <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" name="id" id="id"  value="{% if student %}{{ student.id }}{% endif %}" disabled/>
+            <input type="text" class="form-control" name="id" id="id" value="{% if student %}{{ student.id }}{% endif %}" disabled/>
           </div>
         {% endif %}
         <div class="mb-2">
@@ -64,7 +64,4 @@
       </form>
     </div>
   </div>
-{% endblock %}
-{% block scripts %}
-  <script src="/js/create_student_form.js"></script>
 {% endblock %}

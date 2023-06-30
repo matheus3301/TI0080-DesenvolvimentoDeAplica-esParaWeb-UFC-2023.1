@@ -25,7 +25,7 @@
       <img style="object-fit: cover; width: 350px; height: 350px" id="profilePicture" src="{% if teacher.profilePictureUrl %}{{ teacher.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
     </div>
     <div class="col-md-8">
-      <form id='form_submit_question' name="{% if teacher %}edit{% else %}create{% endif %}">
+      <form id='form_submit_question' name="{% if teacher %}edit{% else %}create{% endif %}" method="POST">
         {% if teacher %}
           <div class="mb-2">
             <label for="id" class="form-label">ID</label>
@@ -68,7 +68,4 @@
       </form>
     </div>
   </div>
-{% endblock %}
-{% block scripts %}
-  <script src="/js/create_teacher_form.js"></script>
 {% endblock %}

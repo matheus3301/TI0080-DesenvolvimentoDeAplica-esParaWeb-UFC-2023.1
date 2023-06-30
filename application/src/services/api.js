@@ -32,6 +32,15 @@ const principal = {
 
     return response.data;
   },
+  createTeacher: async (body, token) => {
+    let response = await instance.post('/teachers', body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
   getTeachers: async ({ token }) => {
     let response = await instance.get('/teachers', {
       headers: {
@@ -41,8 +50,35 @@ const principal = {
 
     return response.data;
   },
+  getTeacherById: async ({ id, token }) => {
+    let response = await instance.get(`/teachers/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  createStudent: async (body, token) => {
+    let response = await instance.post('/students', body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
   getStudents: async ({ token }) => {
     let response = await instance.get('/students', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  getStudentById: async ({ id, token }) => {
+    let response = await instance.get(`/students/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
