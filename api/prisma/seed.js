@@ -32,8 +32,8 @@ async function createClasses() {
 
   await prisma.class.create({
     data: {
-      title: 'Engenharia de Software',
-      description: 'Aquela cadeira top',
+      title: 'Engenharia de Software I',
+      description: 'Aquela cadeira top que todo mundo tem que fazer',
       teacherId: (await prisma.teacher.findFirst({})).id,
     },
   });
