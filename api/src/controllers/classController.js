@@ -37,20 +37,36 @@ const createClass = async (req, res) => {
 };
 
 const getAllClasses = async (req, res) => {
-  try {
-    const classes = await prisma.class.findMany({
-      include: {
-        teacher: true,
-        enrollments: true,
-      },
-    });
+  let query = req.query.query;
+  let classes = null;
 
+  try {
+    if (!query) {
+      classes = await prisma.class.findMany({
+        include: {
+          teacher: true,
+          enrollments: true,
+        },
+      });
+    } else {
+      classes = await prisma.class.findMany({
+        where: {
+          title: {
+            contains: query,
+          },
+        },
+        include: {
+          teacher: true,
+          enrollments: true,
+        },
+      });
+    }
     res.json(classes);
   } catch (error) {
     console.error('Error retrieving classes:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Erro ao listar classes' });
+      .json({ error: 'Erro ao listar turmas' });
   }
 };
 
