@@ -55,13 +55,11 @@ const getAllClasses = async (req, res) => {
             {
               title: {
                 contains: query,
-                mode: 'insensitive',
               },
             },
             {
               description: {
                 contains: query,
-                mode: 'insensitive',
               },
             },
           ],

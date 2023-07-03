@@ -126,6 +126,28 @@ const student = {
 
     return response.data;
   },
+
+  searchForClasses: async (query, token) => {
+    let response;
+    if (query) {
+      response = await instance.get(
+        `/classes?query=${encodeURIComponent(query)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } else {
+      response = await instance.get(`/classes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    return response.data;
+  },
 };
 
 const teacher = {

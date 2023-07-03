@@ -34,9 +34,12 @@ const myClassesPage = async (req, res) => {
 
 const searchForClassesPage = async (req, res) => {
   let { token } = req.cookies;
-  let { query } = req.query.query;
+  let { query } = req.query;
+
+  let classes = await student.searchForClasses(query, token);
 
   let content = {
+    query: query,
     error: req.query.error,
     message: req.query.message,
     name: req.userName,
@@ -44,6 +47,8 @@ const searchForClassesPage = async (req, res) => {
     search_classes: true,
     classes_data: classes,
   };
+
+  res.render('student/student_search.njk', content);
 };
 
 module.exports = {
