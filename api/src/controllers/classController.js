@@ -51,9 +51,20 @@ const getAllClasses = async (req, res) => {
     } else {
       classes = await prisma.class.findMany({
         where: {
-          title: {
-            contains: query,
-          },
+          OR: [
+            {
+              title: {
+                contains: query,
+                mode: 'insensitive',
+              },
+            },
+            {
+              description: {
+                contains: query,
+                mode: 'insensitive',
+              },
+            },
+          ],
         },
         include: {
           teacher: true,

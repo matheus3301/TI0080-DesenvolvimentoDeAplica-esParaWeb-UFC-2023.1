@@ -3,7 +3,8 @@ const { principal } = require('../services/api');
 //TODO: Vitor - Implementar tela de dashboard para mostrar algo bonitim (dois cards para mostrar a quantidade de alunos e de professores)
 const dashboardPage = async (req, res) => {
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
   };
@@ -18,7 +19,8 @@ const teacherListPage = async (req, res) => {
   });
 
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     teachers: true,
@@ -30,7 +32,8 @@ const teacherListPage = async (req, res) => {
 
 const createTeacherPage = async (req, res) => {
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
   };
@@ -98,7 +101,8 @@ const viewTeacherPage = async (req, res) => {
   const { id } = req.params;
 
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     teacher: await principal.getTeacherById({ token: req.cookies.token, id }),
@@ -114,7 +118,8 @@ const studentListPage = async (req, res) => {
   });
 
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     students: true,
@@ -126,7 +131,8 @@ const studentListPage = async (req, res) => {
 
 const createStudentPage = async (req, res) => {
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
   };
@@ -156,7 +162,8 @@ const viewStudentPage = async (req, res) => {
   const { id } = req.params;
 
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     student: await principal.getStudentById({ token: req.cookies.token, id }),

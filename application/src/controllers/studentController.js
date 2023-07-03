@@ -2,7 +2,8 @@ const { student } = require('../services/api');
 
 const dashboardPage = async (req, res) => {
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     dashboard: true,
@@ -20,7 +21,8 @@ const myClassesPage = async (req, res) => {
   });
 
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     my_classes: true,
@@ -32,10 +34,11 @@ const myClassesPage = async (req, res) => {
 
 const searchForClassesPage = async (req, res) => {
   let { token } = req.cookies;
-  let { query } = req.query;
+  let { query } = req.query.query;
 
   let content = {
-    error: req.query,
+    error: req.query.error,
+    message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     search_classes: true,

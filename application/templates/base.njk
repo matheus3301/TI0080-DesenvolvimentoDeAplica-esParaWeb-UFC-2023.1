@@ -53,6 +53,39 @@
               <ol class="breadcrumb"> {% block breadcrumb %}{% endblock %}
                 </ol>
               </nav>
+              
+              {% if error %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Erro!</strong> {{ error }}
+              </div>
+              
+              <script>
+                var alertList = document.querySelectorAll('.alert');
+                alertList.forEach(function (alert) {
+                  new bootstrap.Alert(alert)
+                })
+              </script>
+              
+              {% endif %}
+
+              {% if message %}
+
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Mensagem!</strong> {{ message }}
+              </div>
+              
+              <script>
+                var alertList = document.querySelectorAll('.alert');
+                alertList.forEach(function (alert) {
+                  new bootstrap.Alert(alert)
+                })
+              </script>
+              
+
+              {% endif %}
+
               {% block content %}{% endblock %}
             </div>
           </div>
