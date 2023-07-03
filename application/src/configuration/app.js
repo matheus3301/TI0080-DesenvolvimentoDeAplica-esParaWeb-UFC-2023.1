@@ -54,7 +54,7 @@ app.use(
   validateTokenMiddleware,
   checkUserTypeMiddleware(['STUDENT']),
   loadUserDataMiddleware,
-  principalRouter
+  studentRouter
 );
 
 module.exports = app;

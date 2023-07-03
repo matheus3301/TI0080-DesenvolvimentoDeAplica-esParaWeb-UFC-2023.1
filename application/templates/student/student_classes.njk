@@ -1,0 +1,29 @@
+{% extends 'student/student_base.njk' %} {% block breadcrumb %}
+{{ super() }}
+<li class="breadcrumb-item active">Minhas Turmas</li>
+{% endblock %} {% block content %}
+<div class="row">
+  <div class="col-md-12 questions-header">
+    <h1>Minhas Turmas</h1>
+  </div>
+  <div class="row questions-grid">
+    {% for class in classes_data %}
+    <div class="col-md-4">
+      <div class="card card-class">
+        <div class="card-body">
+          <h5 class="card-title">{{ class.title }}</h5>
+          <span class="card-text">
+            Professor: {{ class.teacher.name }}
+            <br />
+            Descrição: {{ class.description }}
+          </span>
+          <a href="/student/classes/{{ class.id }}" class="btn btn-primary">
+            Acesse a turma
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

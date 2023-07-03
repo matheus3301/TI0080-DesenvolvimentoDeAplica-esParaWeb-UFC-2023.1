@@ -3,6 +3,31 @@ const { Prisma } = require('@prisma/client');
 const HttpStatus = require('http-status-codes').StatusCodes;
 const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 
+const getMyEnrollments = async (req, res) => {
+  try {
+    const { userId } = req;
+
+    let enrollments = await prisma.enrollment.findMany({
+      where: {
+        studentId: userId,
+      },
+      include: {
+        class: {
+          include: {
+            teacher: true,
+          },
+        },
+      },
+    });
+
+    return res.json(enrollments);
+  } catch (err) {
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Erro ao consultar turmas do aluno!',
+    });
+  }
+};
+
 const getPersonalInformation = async (req, res) => {
   try {
     const { userId } = req;
@@ -179,4 +204,5 @@ module.exports = {
   updateStudentById,
   deleteStudentById,
   getPersonalInformation,
+  getMyEnrollments,
 };

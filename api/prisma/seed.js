@@ -6,6 +6,37 @@ async function main() {
   await createTeachers();
   await createStudents();
   await createQuestions();
+  await createClasses();
+  await createEnrollments();
+}
+
+async function createEnrollments() {
+  await prisma.enrollment.deleteMany({});
+  await prisma.enrollment.create({
+    data: {
+      classId: (await prisma.class.findFirst({})).id,
+      studentId: (await prisma.student.findFirst({})).id,
+    },
+  });
+}
+
+async function createClasses() {
+  await prisma.class.deleteMany({});
+  await prisma.class.create({
+    data: {
+      title: 'Desenvolvimento de Aplicações Para Web',
+      description: 'Turma da Cadeira TI0080',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+    },
+  });
+
+  await prisma.class.create({
+    data: {
+      title: 'Engenharia de Software',
+      description: 'Aquela cadeira top',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+    },
+  });
 }
 
 async function createPrincipals() {

@@ -116,6 +116,16 @@ const student = {
 
     return response.data;
   },
+
+  getMyEnrollments: async ({ token }) => {
+    let response = await instance.get('/students/me/enrollments', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
 };
 
 const teacher = {
