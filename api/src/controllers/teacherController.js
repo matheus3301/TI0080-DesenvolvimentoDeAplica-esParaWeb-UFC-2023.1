@@ -3,6 +3,24 @@ const { Prisma } = require('@prisma/client');
 const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 const HttpStatus = require('http-status-codes').StatusCodes;
 
+const getPersonalInformation = async (req, res) => {
+  try {
+    const { userId } = req;
+
+    const teacher = await prisma.teacher.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    return res.json(teacher);
+  } catch (err) {
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Erro ao consultar dados do professor!',
+    });
+  }
+};
+
 // Create a new teacher
 const createTeacher = async (req, res) => {
   try {
@@ -163,4 +181,5 @@ module.exports = {
   getTeacherById,
   updateTeacherById,
   deleteTeacherById,
+  getPersonalInformation,
 };

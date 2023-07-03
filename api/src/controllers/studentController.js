@@ -3,6 +3,24 @@ const { Prisma } = require('@prisma/client');
 const HttpStatus = require('http-status-codes').StatusCodes;
 const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 
+const getPersonalInformation = async (req, res) => {
+  try {
+    const { userId } = req;
+
+    const student = await prisma.student.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    return res.json(student);
+  } catch (err) {
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Erro ao consultar dados do aluno!',
+    });
+  }
+};
+
 const createStudent = async (req, res) => {
   try {
     let { name, profilePictureUrl, email, password, confirmPassword } =
@@ -160,4 +178,5 @@ module.exports = {
   getStudentById,
   updateStudentById,
   deleteStudentById,
+  getPersonalInformation,
 };

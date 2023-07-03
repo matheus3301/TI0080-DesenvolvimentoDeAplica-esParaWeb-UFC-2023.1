@@ -1,11 +1,44 @@
 const express = require('express');
 const router = express.Router();
 const teacherController = require('../controllers/teacherController');
+const authMiddleware = require('../middlewares/authMiddleware');
+const userTypeMiddleware = require('../middlewares/userTypeMiddleware');
 
-router.post('/', teacherController.createTeacher);
-router.get('/', teacherController.getAllTeachers);
-router.get('/:id', teacherController.getTeacherById);
-router.put('/:id', teacherController.updateTeacherById);
-router.delete('/:id', teacherController.deleteTeacherById);
+router.post(
+  '/',
+  authMiddleware,
+  userTypeMiddleware(['PRINCIPAL']),
+  teacherController.createTeacher
+);
+router.get(
+  '/',
+  authMiddleware,
+  userTypeMiddleware(['PRINCIPAL']),
+  teacherController.getAllTeachers
+);
+router.get(
+  '/me',
+  authMiddleware,
+  userTypeMiddleware(['TEACHER']),
+  teacherController.getPersonalInformation
+);
+router.get(
+  '/:id',
+  authMiddleware,
+  userTypeMiddleware(['PRINCIPAL']),
+  teacherController.getTeacherById
+);
+router.put(
+  '/:id',
+  authMiddleware,
+  userTypeMiddleware(['PRINCIPAL']),
+  teacherController.updateTeacherById
+);
+router.delete(
+  '/:id',
+  authMiddleware,
+  userTypeMiddleware(['PRINCIPAL']),
+  teacherController.deleteTeacherById
+);
 
 module.exports = router;

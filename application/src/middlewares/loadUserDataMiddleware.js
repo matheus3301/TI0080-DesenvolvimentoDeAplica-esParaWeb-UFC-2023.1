@@ -1,23 +1,32 @@
-const { principal } = require('../services/api');
+const { principal, teacher, student } = require('../services/api');
 
 const loadUserDataMiddleware = async (req, res, next) => {
   let token = req.cookies.token;
 
   switch (req.userType) {
     case 'TEACHER':
-      // return res.redirect('/teacher');
+      let teacherData = await teacher.getPersonalInformation({
+        token,
+      });
+
+      req.userName = teacherData.name;
+      req.userProfilePictureUrl = studentData.profilePictureUrl;
       break;
     case 'STUDENT':
-      // return res.redirect('/student');
+      let studentData = await student.getPersonalInformation({
+        token,
+      });
+
+      req.userName = studentData.name;
+      req.userProfilePictureUrl = studentData.profilePictureUrl;
       break;
     case 'PRINCIPAL':
-      const { name, profilePictureUrl } =
-        await principal.getPersonalInformation({
-          token,
-        });
+      let principalData = await principal.getPersonalInformation({
+        token,
+      });
 
-      req.userName = name;
-      req.userProfilePictureUrl = profilePictureUrl;
+      req.userName = principalData.name;
+      req.userProfilePictureUrl = principalData.profilePictureUrl;
 
       break;
     default:

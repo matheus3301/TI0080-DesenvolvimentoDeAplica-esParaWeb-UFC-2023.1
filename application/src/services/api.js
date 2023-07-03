@@ -106,45 +106,33 @@ const principal = {
   },
 };
 
-// const useApi = async (endpoint, method, body) => {
-//   const response = await fetch(baseURL + endpoint);
+const student = {
+  getPersonalInformation: async ({ token }) => {
+    let response = await instance.get('/students/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-//   return await response.json();
-// };
+    return response.data;
+  },
+};
 
-// const getQuestions = async (query) => {
-//   return useApi(`/questions${query ? `?query=${query}` : ''}`);
-// };
+const teacher = {
+  getPersonalInformation: async ({ token }) => {
+    let response = await instance.get('/teachers/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-// const getQuestionByID = async (id) => {
-//   return useApi(`/questions/${id}`);
-// };
-
-// const getTeacherById = async (id) => {
-//   return useApi(`/teachers/${id}`);
-// };
-
-// const getAllTeachers = async () => {
-//   return useApi('/teachers');
-// };
-
-// const getAllClasses = async () => {
-//   return useApi(`/classes/`);
-// };
-
-// const getClassByID = async (id) => {
-//   return useApi(`/classes/${id}`);
-// };
-
-// const getAllStudents = async () => {
-//   return useApi('/students');
-// };
-
-// const getStudentById = async (id) => {
-//   return useApi(`/students/${id}`);
-// };
+    return response.data;
+  },
+};
 
 module.exports = {
   auth,
   principal,
+  student,
+  teacher,
 };

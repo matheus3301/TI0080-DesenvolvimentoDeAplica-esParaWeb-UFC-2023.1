@@ -9,6 +9,7 @@ const upload = multer();
 const authRouter = require('../routes/authRouter');
 const teacherRouter = require('../routes/teacherRouter');
 const principalRouter = require('../routes/principalRouter');
+const studentRouter = require('../routes/studentRouter');
 const indexRouter = require('../routes/indexRouter');
 
 const validateTokenMiddleware = require('../middlewares/validateTokenMiddleware');
@@ -45,6 +46,13 @@ app.use(
   '/principal',
   validateTokenMiddleware,
   checkUserTypeMiddleware(['PRINCIPAL']),
+  loadUserDataMiddleware,
+  principalRouter
+);
+app.use(
+  '/student',
+  validateTokenMiddleware,
+  checkUserTypeMiddleware(['STUDENT']),
   loadUserDataMiddleware,
   principalRouter
 );

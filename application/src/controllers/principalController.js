@@ -1,5 +1,6 @@
 const { principal } = require('../services/api');
 
+//TODO: Vitor - Implementar tela de dashboard para mostrar algo bonitim (dois cards para mostrar a quantidade de alunos e de professores)
 const dashboardPage = async (req, res) => {
   let content = {
     error: req.query,
