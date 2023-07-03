@@ -41,6 +41,24 @@ const principal = {
 
     return response.data;
   },
+  deleteTeacher: async (id, token) => {
+    let response = await instance.delete(`/teachers/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  updateTeacher: async (id, body, token) => {
+    let response = await instance.put(`/teachers/${id}`, body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
   getTeachers: async ({ token }) => {
     let response = await instance.get('/teachers', {
       headers: {

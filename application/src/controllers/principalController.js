@@ -55,6 +55,44 @@ const handleCreateTeacherForm = async (req, res) => {
   }
 };
 
+const handleUpdateTeacherForm = async (req, res) => {
+  let { body } = req;
+  let { token } = req.cookies;
+  let { id } = req.params;
+
+  try {
+    const response = await principal.updateTeacher(id, body, token);
+    res.redirect(
+      `/principal/teachers?message=${encodeURIComponent(
+        'Professor atualizado com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/principal/teachers?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
+const handleDeleteTeacher = async (req, res) => {
+  const { id } = req.params;
+  let { token } = req.cookies;
+
+  try {
+    await principal.deleteTeacher(id, token);
+
+    res.redirect(
+      `/principal/teachers?message=${encodeURIComponent(
+        'Professor deletado com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/principal/teachers?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
 const viewTeacherPage = async (req, res) => {
   const { id } = req.params;
 
@@ -126,6 +164,7 @@ const viewStudentPage = async (req, res) => {
   res.render('principal/principal_student_view.njk', content);
 };
 
+// TODO: VITOR - Criar o handleDeleteStudent e handleUpdateStudentForm
 module.exports = {
   dashboardPage,
   teacherListPage,
@@ -136,4 +175,6 @@ module.exports = {
   viewStudentPage,
   handleCreateStudentForm,
   handleCreateTeacherForm,
+  handleDeleteTeacher,
+  handleUpdateTeacherForm,
 };
