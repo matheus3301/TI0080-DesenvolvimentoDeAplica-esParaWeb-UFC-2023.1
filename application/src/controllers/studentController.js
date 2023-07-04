@@ -127,6 +127,20 @@ const handleClassExit = async (req, res) => {
   }
 };
 
+const gamePage = async (req, res) => {
+  let { token } = req.cookies;
+  let { classId, gameId } = req.params;
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+  };
+
+  res.render('student/student_game.njk', content);
+};
+
 module.exports = {
   dashboardPage,
   myClassesPage,
@@ -134,4 +148,5 @@ module.exports = {
   viewClassPage,
   handleClassEnrollment,
   handleClassExit,
+  gamePage,
 };
