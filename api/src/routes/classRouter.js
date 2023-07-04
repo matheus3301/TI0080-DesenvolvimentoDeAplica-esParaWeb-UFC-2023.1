@@ -43,4 +43,11 @@ router.post(
   classController.enrollOnClass
 );
 
+router.delete(
+  '/:classId/enroll',
+  authMiddleware,
+  userTypeMiddleware(['STUDENT']),
+  classController.exitClass
+);
+
 module.exports = router;

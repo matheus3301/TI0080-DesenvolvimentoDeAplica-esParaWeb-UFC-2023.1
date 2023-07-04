@@ -118,12 +118,40 @@ const deleteClassById = async (req, res) => {
       where: { id: parseInt(id) },
     });
 
-    res.sendStatus(204);
+    res.sendStatus(HttpStatus.NO_CONTENT);
   } catch (error) {
     console.error('Error deleting class:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
       .json({ error: 'Falha ao deletar classe' });
+  }
+};
+
+const exitClass = async (req, res) => {
+  try {
+    const { classId } = req.params;
+    const { userId } = req;
+
+    await prisma.enrollment.deleteMany({
+      where: {
+        AND: [
+          {
+            classId: parseInt(classId),
+          },
+          {
+            studentId: userId,
+          },
+        ],
+      },
+    });
+
+    res.sendStatus(HttpStatus.NO_CONTENT);
+  } catch (error) {
+    console.log(```Error exiting class ${classId}```);
+
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Falha ao sair da turma',
+    });
   }
 };
 
@@ -164,4 +192,5 @@ module.exports = {
   updateClassById,
   deleteClassById,
   enrollOnClass,
+  exitClass,
 };

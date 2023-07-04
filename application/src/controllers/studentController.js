@@ -87,10 +87,51 @@ const searchForClassesPage = async (req, res) => {
   res.render('student/student_search.njk', content);
 };
 
-//TODO: Vitor - Fazer endpoint para se matricular em uma turma
+const handleClassEnrollment = async (req, res) => {
+  let { token } = req.cookies;
+  let { id } = req.params;
+
+  try {
+    await student.enrollOnClass(id, token);
+    res.redirect(
+      `/student/classes/${id}?message=${encodeURIComponent(
+        'Sucesso ao ingressar na turma! Seja bem-vindo!'
+      )}`
+    );
+  } catch (err) {
+    console.log(err);
+
+    res.redirect(
+      `/student/classes?error=${encodeURIComponent(
+        'Erro ao ingressar na turma!'
+      )}`
+    );
+  }
+};
+
+const handleClassExit = async (req, res) => {
+  let { token } = req.cookies;
+  let { id } = req.params;
+
+  try {
+    await student.exitClass(id, token);
+    res.redirect(
+      `/student/classes?message=${encodeURIComponent(
+        'Sucesso ao sair da turma'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/student/classes?error=${encodeURIComponent('Erro ao sair da turma!')}`
+    );
+  }
+};
+
 module.exports = {
   dashboardPage,
   myClassesPage,
   searchForClassesPage,
   viewClassPage,
+  handleClassEnrollment,
+  handleClassExit,
 };

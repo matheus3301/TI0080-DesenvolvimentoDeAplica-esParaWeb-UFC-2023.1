@@ -107,6 +107,24 @@ const principal = {
 };
 
 const student = {
+  enrollOnClass: async (id, token) => {
+    let response = await instance.post(`/classes/${id}/enroll`, null, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  exitClass: async (id, token) => {
+    let response = await instance.delete(`/classes/${id}/enroll`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
   getPersonalInformation: async ({ token }) => {
     let response = await instance.get('/students/me', {
       headers: {
