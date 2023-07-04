@@ -7,6 +7,7 @@ const studentRouter = require('../routes/studentRouter');
 const classRouter = require('../routes/classRouter');
 const authRouter = require('../routes/authRouter');
 const principalRouter = require('../routes/principalRouter');
+const examRouter = require('../routes/examRouter');
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use('/students', studentRouter);
 app.use('/classes', classRouter);
 app.use('/principals', principalRouter);
 app.use('/auth', authRouter);
+app.use('/exam', examRouter);
 
 module.exports = app;

@@ -112,7 +112,7 @@ const getAllStudents = async (req, res) => {
     console.error('Error retrieving students:', error);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
-      .json({ error: 'Erro ao listar professores' });
+      .json({ error: 'Erro ao listar alunos' });
   }
 };
 

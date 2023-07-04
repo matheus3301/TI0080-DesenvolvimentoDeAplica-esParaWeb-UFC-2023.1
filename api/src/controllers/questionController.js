@@ -4,10 +4,8 @@ const HttpStatus = require('http-status-codes').StatusCodes;
 
 const createQuestion = async (req, res) => {
   try {
-    const { title, statement, choices, teacher } = req.body;
-
-    //TODO: Get by Session
-    const teacherId = await prisma.teacher.findFirst({});
+    const { title, statement, choices } = req.body;
+    const teacherId = req.userId;
 
     const question = await prisma.question.create({
       data: {
@@ -15,7 +13,7 @@ const createQuestion = async (req, res) => {
         statement,
         teacher: {
           connect: {
-            id: teacherId.id,
+            id: teacherId,
           },
         },
         choices: {
@@ -146,7 +144,7 @@ const deleteQuestionById = async (req, res) => {
       where: { id: parseInt(id) },
     });
 
-    res.sendStatus(204);
+    res.sendStatus(HttpStatus.NO_CONTENT);
   } catch (error) {
     console.error('Error deleting question:', error);
     res

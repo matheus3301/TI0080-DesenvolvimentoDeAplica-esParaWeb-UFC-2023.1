@@ -50,6 +50,7 @@ model Teacher {
   credentials Credentials[]
   questions   Question[]
   classes     Class[]
+  Exam        Exam[]
 }
 
 model Student {
@@ -78,6 +79,8 @@ model Question {
 
   teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   teacherId Int
+  Exam      Exam?   @relation(fields: [examId], references: [id])
+  examId    Int?
 }
 
 model Choice {
@@ -116,4 +119,18 @@ model Enrollment {
   classId   Int
 
   createdAt DateTime @default(now())
+}
+
+model Exam {
+  id Int @id @default(autoincrement())
+
+  title String
+
+  questions Question[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacherId Int
 }
