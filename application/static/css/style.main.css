@@ -108,6 +108,10 @@ button {
   float: right;
 }
 
+.card-class .card-body button {
+  float: right;
+}
+
 .teacher-title {
   background-color: var(--dark-primary);
 }
@@ -278,6 +282,10 @@ ul {
 
 .card-title {
   font-size: 1.25em;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .card-body a {
