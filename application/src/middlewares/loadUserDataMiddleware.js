@@ -10,7 +10,7 @@ const loadUserDataMiddleware = async (req, res, next) => {
       });
 
       req.userName = teacherData.name;
-      req.userProfilePictureUrl = studentData.profilePictureUrl;
+      req.userProfilePictureUrl = teacherData.profilePictureUrl;
       break;
     case 'STUDENT':
       let studentData = await student.getPersonalInformation({

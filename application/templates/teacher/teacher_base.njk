@@ -3,6 +3,11 @@
     <title>Professor | SmartTrivia</title>
 {% endblock %}
 {% block side_list %}
+    <li class="list-group-item d-flex justify-content-between align-items-center {% if dashboard %}active{% endif %}">
+        <a href="/teacher">
+            Menu Principal
+        </a>
+    </li>
     <li class="list-group-item d-flex justify-content-between align-items-center {% if classes %}active{% endif %}">
         <a href="/teacher/classes">
             Minhas Turmas
@@ -20,5 +25,8 @@
     </li>
 {% endblock %}
 {% block breadcrumb %}
-<li class="breadcrumb-item">Professor</li>
-{% endblock%}
+    <li class="breadcrumb-item">Professor</li>
+    {% endblock%}
+    {% block user_type %}
+        Professor
+    {% endblock %}

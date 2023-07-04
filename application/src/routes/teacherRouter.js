@@ -1,53 +1,55 @@
-const teacherRouter = require('express').Router();
-const { getQuestions, getAllClasses } = require('../services/api');
+const router = require('express').Router();
+const teacherController = require('../controllers/teacherController');
 
-teacherRouter.get('/', (req, res) => {
-  let content = {
-    name: 'Matheus',
-  };
+router.get('/', teacherController.dashboardPage);
 
-  res.render('teacher/base.njk', content);
-});
+// teacherRouter.get('/', (req, res) => {
+//   let content = {
+//     name: 'Matheus',
+//   };
 
-teacherRouter.get('/classes', async (req, res) => {
-  let classes_data = await getAllClasses();
-  let content = {
-    name: 'Matheus',
-    classes: true,
-    classes_data: classes_data,
-  };
+//   res.render('teacher/base.njk', content);
+// });
 
-  res.render('teacher/classes.njk', content);
-});
+// teacherRouter.get('/classes', async (req, res) => {
+//   let classes_data = await getAllClasses();
+//   let content = {
+//     name: 'Matheus',
+//     classes: true,
+//     classes_data: classes_data,
+//   };
 
-teacherRouter.get('/tests', (req, res) => {
-  let content = {
-    name: 'Matheus',
-    tests: true,
-  };
+//   res.render('teacher/classes.njk', content);
+// });
 
-  res.render('teacher/tests.njk', content);
-});
+// teacherRouter.get('/tests', (req, res) => {
+//   let content = {
+//     name: 'Matheus',
+//     tests: true,
+//   };
 
-teacherRouter.get('/questions', async (req, res) => {
-  let query = req.query.query;
-  let questions_data = await getQuestions(query);
-  let content = {
-    name: 'Matheus',
-    questions: true,
-    questions_data: questions_data,
-  };
+//   res.render('teacher/tests.njk', content);
+// });
 
-  res.render('teacher/questions.njk', content);
-});
+// teacherRouter.get('/questions', async (req, res) => {
+//   let query = req.query.query;
+//   let questions_data = await getQuestions(query);
+//   let content = {
+//     name: 'Matheus',
+//     questions: true,
+//     questions_data: questions_data,
+//   };
 
-teacherRouter.get('/questions/create', async (req, res) => {
-  let content = {
-    name: 'Matheus',
-    questions: true,
-  };
+//   res.render('teacher/questions.njk', content);
+// });
 
-  res.render('teacher/create_question.njk', content);
-});
+// teacherRouter.get('/questions/create', async (req, res) => {
+//   let content = {
+//     name: 'Matheus',
+//     questions: true,
+//   };
 
-module.exports = teacherRouter;
+//   res.render('teacher/create_question.njk', content);
+// });
+
+module.exports = router;
