@@ -12,6 +12,22 @@ const dashboardPage = async (req, res) => {
   res.render('student/student_dashboard.njk', content);
 };
 
+const viewClassPage = async (req, res) => {
+  let { token } = req.cookies;
+  let { id } = req.params;
+
+  let clasz = await student.getClass(id, token);
+
+  if (clasz.enrollments.some((e) => e.studentId == req.userId)) {
+  } else {
+    res.redirect(
+      `/student/classes?error=${encodeURIComponent(
+        'Estudante não matriculado na turma!'
+      )}`
+    );
+  }
+};
+
 const myClassesPage = async (req, res) => {
   let { token } = req.cookies;
 
@@ -61,6 +77,7 @@ const searchForClassesPage = async (req, res) => {
   res.render('student/student_search.njk', content);
 };
 
+//TODO: Vitor - Fazer endpoint para se matricular em uma turma
 module.exports = {
   dashboardPage,
   myClassesPage,

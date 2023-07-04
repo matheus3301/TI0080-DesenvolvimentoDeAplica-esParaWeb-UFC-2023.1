@@ -127,6 +127,15 @@ const student = {
     return response.data;
   },
 
+  getClass: async (id, token) => {
+    let response = await instance.get(`/classes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
   searchForClasses: async (query, token) => {
     let response;
     if (query) {
