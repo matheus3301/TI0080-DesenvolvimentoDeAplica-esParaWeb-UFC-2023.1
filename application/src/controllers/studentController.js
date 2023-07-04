@@ -1,4 +1,5 @@
 const { student } = require('../services/api');
+const { getGamesByClassId } = require('../services/game');
 
 const dashboardPage = async (req, res) => {
   let content = {
@@ -18,7 +19,9 @@ const viewClassPage = async (req, res) => {
 
   let clasz = await student.getClass(id, token);
 
+
   if (clasz.enrollments.some((e) => e.studentId == req.userId)) {
+    let games = getGamesByClassId(parseInt(id));
     let content = {
       error: req.query.error,
       message: req.query.message,
@@ -26,6 +29,7 @@ const viewClassPage = async (req, res) => {
       profilePictureUrl: req.userProfilePictureUrl,
       my_classes: true,
       class_data: clasz,
+      games_data: games,
     };
 
     res.render('student/student_class_view.njk', content);
@@ -127,6 +131,24 @@ const handleClassExit = async (req, res) => {
   }
 };
 
+const gamePage = async (req, res) => {
+  let { token } = req.cookies;
+  let { classId, gameId } = req.params;
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    game_data: {
+      id: gameId,
+    },
+    userId: req.userId,
+  };
+
+  res.render('student/student_game.njk', content);
+};
+
 module.exports = {
   dashboardPage,
   myClassesPage,
@@ -134,4 +156,5 @@ module.exports = {
   viewClassPage,
   handleClassEnrollment,
   handleClassExit,
+  gamePage,
 };
