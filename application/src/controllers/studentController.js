@@ -1,4 +1,5 @@
 const { student } = require('../services/api');
+const { getGamesByClassId } = require('../services/game');
 
 const dashboardPage = async (req, res) => {
   let content = {
@@ -18,7 +19,9 @@ const viewClassPage = async (req, res) => {
 
   let clasz = await student.getClass(id, token);
 
+
   if (clasz.enrollments.some((e) => e.studentId == req.userId)) {
+    let games = getGamesByClassId(parseInt(id));
     let content = {
       error: req.query.error,
       message: req.query.message,
@@ -26,6 +29,7 @@ const viewClassPage = async (req, res) => {
       profilePictureUrl: req.userProfilePictureUrl,
       my_classes: true,
       class_data: clasz,
+      games_data: games,
     };
 
     res.render('student/student_class_view.njk', content);
@@ -136,6 +140,10 @@ const gamePage = async (req, res) => {
     message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
+    game_data: {
+      id: gameId,
+    },
+    userId: req.userId,
   };
 
   res.render('student/student_game.njk', content);
