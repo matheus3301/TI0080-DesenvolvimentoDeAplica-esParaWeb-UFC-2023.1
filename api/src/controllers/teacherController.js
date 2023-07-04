@@ -21,6 +21,31 @@ const getPersonalInformation = async (req, res) => {
   }
 };
 
+const getMyClasses = async (req, res) => {
+  try {
+    const { userId } = req;
+
+    const classes = await prisma.class.findMany({
+      where: {
+        teacherId: userId,
+      },
+      include: {
+        enrollments: {
+          include: {
+            student: true,
+          },
+        },
+      },
+    });
+
+    return res.json(classes);
+  } catch (err) {
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Erro ao consultar turmas do professor!',
+    });
+  }
+};
+
 // Create a new teacher
 const createTeacher = async (req, res) => {
   try {
@@ -182,4 +207,5 @@ module.exports = {
   updateTeacherById,
   deleteTeacherById,
   getPersonalInformation,
+  getMyClasses,
 };

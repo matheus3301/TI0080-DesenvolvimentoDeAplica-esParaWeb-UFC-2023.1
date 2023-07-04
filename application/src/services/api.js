@@ -205,6 +205,15 @@ const teacher = {
 
     return response.data;
   },
+  getMyClasses: async ({ token }) => {
+    let response = await instance.get('/teachers/me/classes', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
 };
 
 module.exports = {
