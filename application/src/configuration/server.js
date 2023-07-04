@@ -48,10 +48,10 @@ io.on('connection', (socket) => {
       });
       console.log(`[ ] user ${userId} joined on game ${gameId}`);
 
-      io.emit(`${gameId}`, {
-        type: 'STATUS',
-        content: gamesOnline[gameId].getStatus(),
-      });
+      // io.emit(`${gameId}`, {
+      //   type: 'STATUS',
+      //   content: gamesOnline[gameId].getStatus(),
+      // });
 
       io.emit(`${gameId}`, {
         type: 'SCOREBOARD',
