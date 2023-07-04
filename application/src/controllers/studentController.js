@@ -37,6 +37,16 @@ const searchForClassesPage = async (req, res) => {
   let { query } = req.query;
 
   let classes = await student.searchForClasses(query, token);
+  classes = classes.map((clasz) => {
+    if (
+      clasz.enrollments.some((enrollment) => enrollment.studentId == req.userId)
+    ) {
+      clasz.canEnroll = false;
+    } else {
+      clasz.canEnroll = true;
+    }
+    return clasz;
+  });
 
   let content = {
     query: query,

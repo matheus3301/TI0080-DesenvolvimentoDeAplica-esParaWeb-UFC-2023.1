@@ -25,9 +25,11 @@
                 <span class="card-text">
                   Professor: {{ class.teacher.name }} <br/> Descrição: {{ class.description }}
                 </span>
-                <a href="/student/classes/{{ class.id }}/enroll" class="btn btn-primary">
-                  Entrar na Turma
-                </a>
+                {% if class.canEnroll %}
+                  <a href="/student/classes/{{ class.id }}/enroll" class="btn btn-primary">
+                    Entrar na Turma
+                  </a>
+                {% endif %}
               </div>
             </div>
           </div>
