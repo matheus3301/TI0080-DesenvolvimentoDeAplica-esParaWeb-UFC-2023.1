@@ -14,5 +14,7 @@ router.get('/students', principalController.studentListPage);
 router.get('/students/new', principalController.createStudentPage);
 router.get('/students/:id', principalController.viewStudentPage);
 router.post('/students/new', principalController.handleCreateStudentForm);
+router.post('/students/:id', principalController.handleUpdateStudentForm);
+router.get('/students/:id/delete', principalController.handleDeleteStudent);
 
 module.exports = router;

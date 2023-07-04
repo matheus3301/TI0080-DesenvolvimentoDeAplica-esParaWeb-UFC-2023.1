@@ -31,8 +31,8 @@
             <td>{{ student.email }}</td>
             <td>{{ student.enrollments }}</td>
             <td>
-              <button name="delete" id="delete" class="btn btn-danger" onClick="delete_student({{ student.id }})" role="button">
-                <i class="bi bi-trash"></i>Deletar</button>
+              <a name="delete" id="delete" class="btn btn-danger" href="/principal/students/{{ student.id }}/delete" role="button">
+                <i class="bi bi-trash"></i>Deletar</a>
               <a name="more" id="more" class="btn btn-primary" href="students/{{ student.id }}" role="button">
                 <i class="bi bi-three-dots-vertical"></i>Ver Mais</a>
             </td>

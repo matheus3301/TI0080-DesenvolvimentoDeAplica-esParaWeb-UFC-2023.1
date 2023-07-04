@@ -148,7 +148,45 @@ const handleCreateStudentForm = async (req, res) => {
     const response = await principal.createStudent(body, token);
     res.redirect(
       `/principal/students?message=${encodeURIComponent(
-        'Professor criado com sucesso!'
+        'Estudante criado com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/principal/students?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
+const handleUpdateStudentForm = async (req, res) => {
+  let { body } = req;
+  let { token } = req.cookies;
+  let { id } = req.params;
+
+  try {
+    const response = await principal.updateStudent(id, body, token);
+    res.redirect(
+      `/principal/students?message=${encodeURIComponent(
+        'Estudante atualizado com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/principal/students?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
+const handleDeleteStudent = async (req, res) => {
+  const { id } = req.params;
+  let { token } = req.cookies;
+
+  try {
+    await principal.deleteStudent(id, token);
+
+    res.redirect(
+      `/principal/students?message=${encodeURIComponent(
+        'Estudante deletado com sucesso!'
       )}`
     );
   } catch (err) {
@@ -172,7 +210,6 @@ const viewStudentPage = async (req, res) => {
   res.render('principal/principal_student_view.njk', content);
 };
 
-// TODO: VITOR - Criar o handleDeleteStudent e handleUpdateStudentForm
 module.exports = {
   dashboardPage,
   teacherListPage,
@@ -180,6 +217,8 @@ module.exports = {
   viewTeacherPage,
   studentListPage,
   createStudentPage,
+  handleDeleteStudent,
+  handleUpdateStudentForm,
   viewStudentPage,
   handleCreateStudentForm,
   handleCreateTeacherForm,
