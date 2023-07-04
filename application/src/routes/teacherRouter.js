@@ -2,14 +2,9 @@ const router = require('express').Router();
 const teacherController = require('../controllers/teacherController');
 
 router.get('/', teacherController.dashboardPage);
+router.get('/classes', teacherController.classListPage);
 
-// teacherRouter.get('/', (req, res) => {
-//   let content = {
-//     name: 'Matheus',
-//   };
-
-//   res.render('teacher/base.njk', content);
-// });
+//TODO: Vitão - escrever todos os métodos no controller e no service api para realizar todas as funcionalidades do professor, incluindo criar provas, ver turma (OBS, deixar a parte de aplicar prova pro final)
 
 // teacherRouter.get('/classes', async (req, res) => {
 //   let classes_data = await getAllClasses();
