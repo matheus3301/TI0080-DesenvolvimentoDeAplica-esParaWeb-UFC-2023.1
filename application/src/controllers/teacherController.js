@@ -41,11 +41,11 @@ const questionListPage = async (req, res) => {
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     questions: true,
-    questions_data: questions_data, 
+    questions_data: questions_data,
   };
 
   res.render('teacher/teacher_questions.njk', content);
-}
+};
 
 const questionPage = async (req, res) => {
   let { token } = req.cookies;
@@ -58,11 +58,11 @@ const questionPage = async (req, res) => {
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     questions: true,
-    question: question_data, 
+    question: question_data,
   };
 
   res.render('teacher/teacher_question.njk', content);
-}
+};
 
 const createQuestionPage = async (req, res) => {
   let content = {
@@ -70,7 +70,7 @@ const createQuestionPage = async (req, res) => {
     message: req.query.message,
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
-    questions: true
+    questions: true,
   };
 
   res.render('teacher/teacher_create_question.njk', content);
@@ -84,20 +84,20 @@ const handleCreateQuestionForm = async (req, res) => {
     title: body.title,
     statement: body.statement,
     choices: [],
-  }
+  };
 
-  for (var i = 0; i < Object.keys(body).length - 2; i++){
+  for (var i = 0; i < Object.keys(body).length - 2; i++) {
     let alternative = i + 1;
-    let alternative_method = `alternative_${alternative}`
+    let alternative_method = `alternative_${alternative}`;
     if (alternative == 1) {
       sanitized_body.choices.push({
         value: body[alternative_method],
-        isCorrect: true
-      })
+        isCorrect: true,
+      });
     } else {
       sanitized_body.choices.push({
-        value: body[alternative_method]
-      })   
+        value: body[alternative_method],
+      });
     }
   }
 
@@ -146,11 +146,11 @@ const examListPage = async (req, res) => {
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     exams: true,
-    exams_data: exams_data, 
+    exams_data: exams_data,
   };
 
   res.render('teacher/teacher_exams.njk', content);
-}
+};
 
 const createExamPage = async (req, res) => {
   let { token } = req.cookies;
@@ -164,7 +164,7 @@ const createExamPage = async (req, res) => {
     name: req.userName,
     profilePictureUrl: req.userProfilePictureUrl,
     exams: true,
-    questions_data: questions_data
+    questions_data: questions_data,
   };
 
   res.render('teacher/teacher_exam_view.njk', content);
@@ -177,15 +177,13 @@ const handleCreateExamForm = async (req, res) => {
   let sanitized_body = {
     title: body.title,
     questions: [],
-  }
+  };
 
-  for (var i = 0; i < Object.keys(body).length - 1; i++){
+  for (var i = 0; i < Object.keys(body).length - 1; i++) {
     let question = i + 1;
-    let question_method = `question_${question}`
-    sanitized_body.questions.push(parseInt(body[question_method]))   
+    let question_method = `question_${question}`;
+    sanitized_body.questions.push(parseInt(body[question_method]));
   }
-
-  console.log(sanitized_body)
 
   try {
     const response = await teacher.createExam(sanitized_body, token);
@@ -195,7 +193,7 @@ const handleCreateExamForm = async (req, res) => {
       )}`
     );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.redirect(
       `/teacher/exams?error=${encodeURIComponent(err.response.data.error)}`
     );
@@ -212,5 +210,5 @@ module.exports = {
   handleDeleteQuestion,
   examListPage,
   createExamPage,
-  handleCreateExamForm
+  handleCreateExamForm,
 };

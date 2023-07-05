@@ -16,7 +16,11 @@ const createExam = async (req, res) => {
           },
         },
         questions: {
-          connect: questions
+          connect: questions.map((questionId) => {
+            return {
+              id: questionId,
+            };
+          }),
         },
       },
       include: {
