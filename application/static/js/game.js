@@ -91,8 +91,9 @@ function answerQuestion(choiceId) {
 
 function drawFinishScreen(data) {
   let templateString = `
-    <h3>Aguarde</h3>
-    <h4>O jogo acabou, confira no placar os vencedores!</h4>`;
+    <h3>Fim!</h3>
+    <h4>O jogo acabou, confira no placar os vencedores!</h4>
+    <a name="" id="" class="btn btn-warning" href="../../" role="button">Voltar para a turma!</a>`;
 
   document.getElementById('game-container').innerHTML = templateString;
 }
