@@ -309,6 +309,24 @@ const teacher = {
     });
 
     return response.data;
+  },
+  getExamByID: async ({ id, token }) => {
+    let response = await instance.get(`/exams/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  deleteExam: async (id, token) => {
+    let response = await instance.delete(`/exams/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
   }
 };
 

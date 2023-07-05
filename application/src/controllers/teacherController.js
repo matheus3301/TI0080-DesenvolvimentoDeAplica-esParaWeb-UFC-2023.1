@@ -154,9 +154,8 @@ const examListPage = async (req, res) => {
 
 const createExamPage = async (req, res) => {
   let { token } = req.cookies;
-  let { query } = req.query;
 
-  let questions_data = await teacher.getQuestions({ query, token });
+  let questions_data = await teacher.getQuestions({ token });
 
   let content = {
     error: req.query.error,
@@ -236,6 +235,43 @@ const handleDeleteClass = async (req, res) => {
   }
 };
 
+const examPage = async (req, res) => {
+  let { token } = req.cookies;
+  let { id } = req.params;
+
+  let exams_data = await teacher.getExamByID({ id, token });
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    exams: true,
+    exams_data: exams_data,
+  };
+
+  res.render('teacher/teacher_exam_view.njk', content);
+};
+
+const handleDeleteExam = async (req, res) => {
+  const { id } = req.params;
+  let { token } = req.cookies;
+
+  try {
+    await teacher.deleteExam(id, token);
+
+    res.redirect(
+      `/teacher/exams?message=${encodeURIComponent(
+        'Prova deletada com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/teacher/exams?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -248,5 +284,7 @@ module.exports = {
   createExamPage,
   handleCreateExamForm,
   classPage,
-  handleDeleteClass
+  handleDeleteClass,
+  examPage,
+  handleDeleteExam
 };
