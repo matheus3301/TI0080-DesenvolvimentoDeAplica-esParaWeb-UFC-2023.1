@@ -1,0 +1,28 @@
+{% extends 'teacher/teacher_base.njk' %}
+{% block breadcrumb %}
+    {{ super() }}
+    <li class="breadcrumb-item">Minhas Turmas</li>
+    <li class="breadcrumb-item active">Criar Turma</li>
+{% endblock %}
+{% block content %}
+    <div class="questions-header">
+        <h1>Criar Turma</h1>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row g-2 d-flex justify-content-center align-items-center create-question">
+            <form class="justify-content-center align-items-center" id="form_submit_question" name="create" method="POST">
+                <div class="mb-3">
+                    <label for="" class="form-label">Título:</label>
+                    <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Descrição:</label>
+                    <textarea type="text" name="description" id="description" class="form-control" placeholder="" aria-describedby="helpId" required></textarea>
+                </div>
+                <div class="d-flex float-end">
+                    <button type="submit" class="btn btn-primary">Criar Turma</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

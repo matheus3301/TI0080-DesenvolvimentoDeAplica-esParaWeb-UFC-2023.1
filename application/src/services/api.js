@@ -327,6 +327,15 @@ const teacher = {
     });
 
     return response.data;
+  },
+  createClass: async (body, token) => {
+    let response = await instance.post('/classes', body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
   }
 };
 

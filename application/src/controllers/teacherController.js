@@ -272,6 +272,37 @@ const handleDeleteExam = async (req, res) => {
   }
 };
 
+const createClassPage = async (req, res) => {
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    classes: true,
+  };
+
+  res.render('teacher/teacher_create_class.njk', content);
+};
+
+const handleCreateClassForm = async (req, res) => {
+  let { body } = req;
+  let { token } = req.cookies;
+
+  try {
+    const response = await teacher.createClass(body, token);
+    res.redirect(
+      `/teacher/classes?message=${encodeURIComponent(
+        'Turma criada com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    console.log(err);
+    res.redirect(
+      `/teacher/classes?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -286,5 +317,7 @@ module.exports = {
   classPage,
   handleDeleteClass,
   examPage,
-  handleDeleteExam
+  handleDeleteExam,
+  createClassPage,
+  handleCreateClassForm
 };
