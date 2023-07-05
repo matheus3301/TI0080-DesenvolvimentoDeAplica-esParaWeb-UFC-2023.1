@@ -134,6 +134,24 @@ const handleDeleteQuestion = async (req, res) => {
   }
 };
 
+const examListPage = async (req, res) => {
+  let { token } = req.cookies;
+  let { query } = req.query;
+  let exams_data = await teacher.getExams({ query, token });
+
+  let content = {
+    query: query,
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    exams: true,
+    exams_data: exams_data, 
+  };
+
+  res.render('teacher/teacher_exams.njk', content);
+}
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -141,5 +159,6 @@ module.exports = {
   createQuestionPage,
   handleCreateQuestionForm,
   questionPage,
-  handleDeleteQuestion
+  handleDeleteQuestion,
+  examListPage
 };

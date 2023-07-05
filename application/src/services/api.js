@@ -262,6 +262,27 @@ const teacher = {
 
     return response.data;
   },
+  getExams: async ({ query, token }) => {
+    let response;
+    if (query) {
+      response = await instance.get(
+        `/teachers/me/exams?query=${encodeURIComponent(query)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } else {
+      response = await instance.get(`/teachers/me/exams`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    return response.data;
+  }
 };
 
 module.exports = {

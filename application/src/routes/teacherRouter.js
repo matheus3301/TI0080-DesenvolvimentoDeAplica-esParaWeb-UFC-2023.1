@@ -4,6 +4,7 @@ const teacherController = require('../controllers/teacherController');
 router.get('/', teacherController.dashboardPage);
 router.get('/classes', teacherController.classListPage);
 router.get('/questions', teacherController.questionListPage);
+router.get('/exams', teacherController.examListPage);
 router.get('/questions/new', teacherController.createQuestionPage);
 router.post('/questions/new', teacherController.handleCreateQuestionForm);
 router.get('/questions/:id', teacherController.questionPage)
