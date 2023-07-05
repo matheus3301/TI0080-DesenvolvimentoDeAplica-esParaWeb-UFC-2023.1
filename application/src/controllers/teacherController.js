@@ -1,4 +1,5 @@
 const { teacher } = require('../services/api');
+const { getGamesByClassId } = require('../services/game');
 
 const dashboardPage = async (req, res) => {
   let content = {
@@ -204,8 +205,10 @@ const classPage = async (req, res) => {
   let { token } = req.cookies;
   let { id } = req.params;
   let class_data = await teacher.getClassByID({ id, token });
+  let games = getGamesByClassId(parseInt(id));
 
   let content = {
+    games_data: games,
     error: req.query.error,
     message: req.query.message,
     name: req.userName,
@@ -236,6 +239,24 @@ const handleDeleteClass = async (req, res) => {
   }
 };
 
+const gamePage = async (req, res) => {
+  let { token } = req.cookies;
+  let { classId, gameId } = req.params;
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    game_data: {
+      id: gameId,
+    },
+    userId: req.userId,
+  };
+
+  res.render('teacher/teacher_game.njk', content);
+};
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -248,5 +269,6 @@ module.exports = {
   createExamPage,
   handleCreateExamForm,
   classPage,
-  handleDeleteClass
+  handleDeleteClass,
+  gamePage,
 };

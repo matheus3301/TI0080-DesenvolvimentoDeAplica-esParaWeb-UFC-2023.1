@@ -1,82 +1,165 @@
-{% extends 'teacher/teacher_base.njk' %}
-{% block breadcrumb %}
-    {{ super() }}
-    <li class="breadcrumb-item">Minhas Turmas</li>
-    <li class="breadcrumb-item active">{{class_data.id}}</li>
-{% endblock %}
-{% block content %}
-  <h1>{{ class_data.title }}</h1>
+{% extends 'teacher/teacher_base.njk' %} {% block breadcrumb %}
+{{ super() }}
+<li class="breadcrumb-item">Minhas Turmas</li>
+<li class="breadcrumb-item active">{{ class_data.id }}</li>
+{% endblock %} {% block content %}
+<h1>{{ class_data.title }}</h1>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active text-dark" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
-        Jogos
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link text-dark" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-        Turma
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link text-dark" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">
-        Opções
-      </button>
-    </li>
-  </ul>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active text-dark"
+      id="home-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#home"
+      type="button"
+      role="tab"
+      aria-controls="home"
+      aria-selected="true"
+    >
+      Jogos
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link text-dark"
+      id="profile-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#profile"
+      type="button"
+      role="tab"
+      aria-controls="profile"
+      aria-selected="false"
+    >
+      Turma
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link text-dark"
+      id="settings-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#settings"
+      type="button"
+      role="tab"
+      aria-controls="settings"
+      aria-selected="false"
+    >
+      Opções
+    </button>
+  </li>
+</ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-      {% for game in games_data %}
-        <div class="card mb-5">
-          <div class="card-header">Acontecendo Agora!!!</div>
-          <div class="card-body">
-            <h5 class="card-title">{{ game.title }}</h5>
-            <p class="card-text">Alunos Jogando:
-              {{ game.playersOnline }}</p>
-            <a href="/student/classes/{{ class_data.id }}/game/{{ game.id }}" class="btn btn-primary btn-submit">
-              <i class="bi bi-controller"></i>
-              Entrar no jogo!</a >
+<!-- Tab panes -->
+<div class="tab-content">
+  <div
+    class="tab-pane active"
+    id="home"
+    role="tabpanel"
+    aria-labelledby="home-tab"
+    tabindex="0"
+  >
+    <div class="row">
+      <a
+        href="/teacher/classes/{{ class_data.id }}/game/new"
+        class="btn btn-primary btn-submit mb-4"
+      >
+        <i class="bi bi-controller"></i>Criar Novo Jogo
+      </a>
+    </div>
+    {% for game in games_data %}
+    <div class="card mb-5">
+      <div class="card-header">Acontecendo Agora!!!</div>
+      <div class="card-body">
+        <h5 class="card-title">{{ game.title }}</h5>
+        <p class="card-text">Alunos Jogando: {{ game.playersOnline }}</p>
+        <a
+          href="/teacher/classes/{{ class_data.id }}/game/{{ game.id }}"
+          class="btn btn-primary btn-submit"
+        >
+          <i class="bi bi-controller"></i>
+          Controlar Jogo!</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div
+    class="tab-pane"
+    id="profile"
+    role="tabpanel"
+    aria-labelledby="profile-tab"
+    tabindex="0"
+  >
+    <h4>Professor</h4>
+    <div class="row justify-content-center align-items-center g-2 mb-3">
+      <div class="card">
+        <div class="card-body user-card">
+          <div>
+            <img
+              style="object-fit: cover; width: 120px; height: 120px"
+              id="profilePicture"
+              src="{% if class_data.teacher.profilePictureUrl %}{{
+                class_data.teacher.profilePictureUrl
+              }}{% else %}/img/defaultuser.png{% endif %}"
+              class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4"
+              onerror="this.onerror=null;this.src='/img/defaultuser.png';"
+            />
+          </div>
+          <div class="user-card-name">
+            <p>
+              <span style="font-weight: bold">Nome:</span>
+              {{ class_data.teacher.name }}
+            </p>
           </div>
         </div>
+      </div>
+    </div>
+    <h4>Alunos</h4>
+    <div class="row justify-content-center align-items-center g-2 mb-3">
+      {% for enrollment in class_data.enrollments %}
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body user-card">
+            <div>
+              <img
+                style="object-fit: cover; width: 120px; height: 120px"
+                id="profilePicture"
+                src="{% if enrollment.student.profilePictureUrl %}{{
+                  enrollment.student.profilePictureUrl
+                }}{% else %}/img/defaultuser.png{% endif %}"
+                class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4"
+                onerror="this.onerror=null;this.src='/img/defaultuser.png';"
+              />
+            </div>
+            <div class="user-card-name">
+              <p>
+                <span style="font-weight: bold">Nome:</span>
+                {{ enrollment.student.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </div>
-    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-        <h4>Professor</h4>
-        <div class="row justify-content-center align-items-center g-2 mb-3">
-            <div class="card">
-                <div class="card-body user-card">
-                    <div>
-                        <img style="object-fit: cover; width: 120px; height: 120px" id="profilePicture" src="{% if class_data.teacher.profilePictureUrl %}{{ class_data.teacher.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
-                    </div>
-                    <div class="user-card-name">
-                        <p><span style="font-weight: bold">Nome:</span> {{class_data.teacher.name}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h4>Alunos</h4>
-        <div class="row justify-content-center align-items-center g-2 mb-3">
-            {% for enrollment in class_data.enrollments %}
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body user-card">
-                            <div>
-                                <img style="object-fit: cover; width: 120px; height: 120px" id="profilePicture" src="{% if enrollment.student.profilePictureUrl %}{{ enrollment.student.profilePictureUrl }}{% else %}/img/defaultuser.png{% endif %}" class="img-fluid rounded-circle img-thumbnail mx-auto d-block mt-4" onerror="this.onerror=null;this.src='/img/defaultuser.png';"/>
-                            </div>
-                            <div class="user-card-name">
-                                <p><span style="font-weight: bold">Nome:</span> {{enrollment.student.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
-      <a name="exit-class" id="exit-class" class="btn btn-danger" href="/teacher/classes/{{ class_data.id }}/delete" role="button">Excluir Turma</a >
-    </div>
   </div>
+  <div
+    class="tab-pane"
+    id="settings"
+    role="tabpanel"
+    aria-labelledby="settings-tab"
+    tabindex="0"
+  >
+    <a
+      name="exit-class"
+      id="exit-class"
+      class="btn btn-danger"
+      href="/teacher/classes/{{ class_data.id }}/delete"
+      role="button"
+      >Excluir Turma</a
+    >
+  </div>
+</div>
 {% endblock %}
