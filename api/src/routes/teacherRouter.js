@@ -23,6 +23,12 @@ router.get(
   teacherController.getPersonalInformation
 );
 router.get(
+  '/me/exams',
+  authMiddleware,
+  userTypeMiddleware(['TEACHER']),
+  teacherController.getMyExams
+);
+router.get(
   '/me/classes',
   authMiddleware,
   userTypeMiddleware(['TEACHER']),

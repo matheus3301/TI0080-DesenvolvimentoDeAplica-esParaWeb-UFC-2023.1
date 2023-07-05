@@ -3,6 +3,51 @@ const { Prisma } = require('@prisma/client');
 const { sanitizeUserObject } = require('../util/sanitizeUserObject');
 const HttpStatus = require('http-status-codes').StatusCodes;
 
+const getMyExams = async (req, res) => {
+  try {
+    const { userId } = req;
+    const { query } = req.query;
+
+    let exams;
+    if (query) {
+      exams = await prisma.exam.findMany({
+        where: {
+          teacherId: userId,
+        },
+        include: {
+          questions: {
+            include: {
+              choices: true,
+            },
+          },
+        },
+      });
+    } else {
+      exams = await prisma.exam.findMany({
+        where: {
+          teacherId: userId,
+          title: {
+            contains: query,
+          },
+        },
+        include: {
+          questions: {
+            include: {
+              choices: true,
+            },
+          },
+        },
+      });
+    }
+
+    return res.json(exams);
+  } catch (err) {
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Erro ao consultar provas do professor!',
+    });
+  }
+};
+
 const getPersonalInformation = async (req, res) => {
   try {
     const { userId } = req;
@@ -208,4 +253,5 @@ module.exports = {
   deleteTeacherById,
   getPersonalInformation,
   getMyClasses,
+  getMyExams,
 };
