@@ -4,8 +4,8 @@
     {{ super() }}
     <li class="breadcrumb-item">Minhas Provas</li>
     <li class="breadcrumb-item active">
-        {% if exam %}
-            {{ exam.id }}
+        {% if exams_data %}
+            {{ exams_data.id }}
         {% else %}
             Nova Prova
         {% endif %}
@@ -15,7 +15,7 @@
 {% block content %}
   <div class="questions-header">
     <h1>
-      {% if exam %}
+      {% if exams_data %}
         Ver Prova
       {% else %}
         Nova Prova
@@ -24,31 +24,43 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <form id='form_submit_question' name="{% if exam %}edit{% else %}create{% endif %}" method="POST">
-        {% if exam %}
+      <form id='form_submit_question' name="{% if exams_data %}edit{% else %}create{% endif %}" method="POST">
+        {% if exams_data %}
           <div class="mb-3">
             <label for="id" class="form-label">ID</label>
-            <input type="text" class="form-control" name="id" id="id" value="{% if exam %}{{ exam.id }}{% endif %}" disabled/>
+            <input type="text" class="form-control" name="id" id="id" value="{% if exams_data %}{{ exams_data.id }}{% endif %}" disabled/>
           </div>
         {% endif %}
         <div class="mb-3">
           <label for="title" class="form-label">Título</label>
-          <input type="text" class="form-control" name="title" id="title" aria-describedby="" placeholder="" required value="{% if exam %}{{ exam.title }}{% endif %}"/>
+          <input type="text" class="form-control" name="title" id="title" aria-describedby="" placeholder="" required {% if exams_data %}disabled{% endif %} value="{% if exams_data %}{{ exams_data.title }}{% endif %}"/>
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Questões:</label>
             <div id="questions" class="mb-3">
+              {% if exams_data %}
+                {% for question in exams_data.questions %}
+                  <select class="form-select form-select-lg mb-3" disabled>
+                    <option value="{{question.id}}">{{question.id}} - {{question.title}}</option>
+                  </select>
+                {% endfor %}
+              {% else %}
                 <select class="form-select form-select-lg mb-3" name="question_1" id="question_1">
                     {% for question in questions_data %}
                         <option value="{{question.id}}">{{question.id}} - {{question.title}}</option>
                     {% endfor %}
                 </select>
+              {% endif %}
             </div>
         </div>
         <div class="d-flex justify-content-between">
-            <button id="button-function" type="button" onClick="add_question()" class="btn btn-primary">Adicionar Questão</button>
-            <button type="submit" class="btn btn-primary btn-submit">
-                {% if not exam %}
+            {% if exams_data %}
+              <a id="button-function" href="/teacher/exams/{{exams_data.id}}/delete" type="button" class="btn btn-danger">Excluir Prova</a>
+            {% else %}
+              <button id="button-function" type="button" onClick="add_question()" class="btn btn-primary">Adicionar Questão</button>
+            {% endif %}
+            <button type="submit" class="btn btn-primary btn-submit" {% if exams_data %}disabled{% endif %}>
+                {% if not exams_data %}
                     Cadastrar
                 {% else %}
                     Atualizar
