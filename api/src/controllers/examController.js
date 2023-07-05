@@ -67,7 +67,12 @@ const getExamById = async (req, res) => {
       where: { id: parseInt(id) },
       include: {
         teacher: true,
-        questions: true,
+        teacher: true,
+        questions: {
+          include: {
+            choices: true,
+          },
+        },
       },
     });
 

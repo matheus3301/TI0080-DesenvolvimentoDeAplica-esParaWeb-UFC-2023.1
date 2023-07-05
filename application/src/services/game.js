@@ -105,46 +105,46 @@ class Game {
   }
 }
 
-const gamesOnline = {
-  '8cf05356-4958-41cb-b175-4e8aea3382f4': new Game(1, 'Simulado Surpresa ;-;', [
-    {
-      id: 1,
-      title: 'Matemática - Soma',
-      statement: 'Quanto é 2 + 2?',
-      choices: [
-        {
-          id: 1,
-          value: '4',
-          isCorrect: true,
-        },
+const gamesOnline = {};
 
-        {
-          id: 2,
-          value: '5',
-          isCorrect: false,
-        },
-      ],
-    },
-    {
-      id: 1,
-      title: 'Matemática - Subtração',
-      statement: 'Quanto é 4 - 2?',
-      choices: [
-        {
-          id: 1,
-          value: '4',
-          isCorrect: false,
-        },
+// '8cf05356-4958-41cb-b175-4e8aea3382f4': new Game(1, 'Simulado Surpresa ;-;', [
+//   {
+//     id: 1,
+//     title: 'Matemática - Soma',
+//     statement: 'Quanto é 2 + 2?',
+//     choices: [
+//       {
+//         id: 1,
+//         value: '4',
+//         isCorrect: true,
+//       },
 
-        {
-          id: 2,
-          value: '2',
-          isCorrect: true,
-        },
-      ],
-    },
-  ]),
-};
+//       {
+//         id: 2,
+//         value: '5',
+//         isCorrect: false,
+//       },
+//     ],
+//   },
+//   {
+//     id: 1,
+//     title: 'Matemática - Subtração',
+//     statement: 'Quanto é 4 - 2?',
+//     choices: [
+//       {
+//         id: 1,
+//         value: '4',
+//         isCorrect: false,
+//       },
+
+//       {
+//         id: 2,
+//         value: '2',
+//         isCorrect: true,
+//       },
+//     ],
+//   },
+// ]),
 
 const getGamesByClassId = (classId) => {
   let games = [];

@@ -1,5 +1,6 @@
 const { teacher } = require('../services/api');
-const { getGamesByClassId } = require('../services/game');
+const { getGamesByClassId, Game, gamesOnline } = require('../services/game');
+const { v4: uuidv4 } = require('uuid');
 
 const dashboardPage = async (req, res) => {
   let content = {
@@ -323,6 +324,45 @@ const handleCreateClassForm = async (req, res) => {
   }
 };
 
+const createGamePage = async (req, res) => {
+  let { token } = req.cookies;
+
+  const exams = await teacher.getExams({ query: undefined, token });
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    classes: true,
+    exams_data: exams,
+  };
+
+  res.render('teacher/teacher_game_create.njk', content);
+};
+
+const handleCreateGame = async (req, res) => {
+  try {
+    let { token } = req.cookies;
+    let { classId } = req.params;
+    let exam = await teacher.getExamByID({ id: req.body.examId, token });
+    let newGame = new Game(parseInt(classId), exam.title, exam.questions);
+    gamesOnline[uuidv4()] = newGame;
+
+    res.redirect(
+      `/teacher/classes/${classId}?message=${encodeURIComponent(
+        'Jogo criado com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/teacher/classes/${classId}?error=${encodeURIComponent(
+        'Erro ao criar jogo!'
+      )}`
+    );
+  }
+};
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -340,5 +380,7 @@ module.exports = {
   examPage,
   handleDeleteExam,
   createClassPage,
-  handleCreateClassForm
+  handleCreateClassForm,
+  handleCreateGame,
+  createGamePage,
 };
