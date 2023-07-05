@@ -282,6 +282,15 @@ const teacher = {
     }
 
     return response.data;
+  },
+  createExam: async (body, token) => {
+    let response = await instance.post('/exams', body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
   }
 };
 

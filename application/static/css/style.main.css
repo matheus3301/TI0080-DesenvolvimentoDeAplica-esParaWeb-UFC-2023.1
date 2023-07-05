@@ -30,6 +30,11 @@ body {
   padding: 0;
 }
 
+.row>* {
+  margin: 0;
+  padding: 0;
+}
+
 button {
   color: var(--background) !important;
 }
@@ -327,4 +332,8 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+form {
+  padding: 0 !important;
 }

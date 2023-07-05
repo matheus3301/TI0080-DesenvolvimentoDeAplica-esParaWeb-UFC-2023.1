@@ -152,6 +152,56 @@ const examListPage = async (req, res) => {
   res.render('teacher/teacher_exams.njk', content);
 }
 
+const createExamPage = async (req, res) => {
+  let { token } = req.cookies;
+  let { query } = req.query;
+
+  let questions_data = await teacher.getQuestions({ query, token });
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    exams: true,
+    questions_data: questions_data
+  };
+
+  res.render('teacher/teacher_exam_view.njk', content);
+};
+
+const handleCreateExamForm = async (req, res) => {
+  let { body } = req;
+  let { token } = req.cookies;
+
+  let sanitized_body = {
+    title: body.title,
+    questions: [],
+  }
+
+  for (var i = 0; i < Object.keys(body).length - 1; i++){
+    let question = i + 1;
+    let question_method = `question_${question}`
+    sanitized_body.questions.push(parseInt(body[question_method]))   
+  }
+
+  console.log(sanitized_body)
+
+  try {
+    const response = await teacher.createExam(sanitized_body, token);
+    res.redirect(
+      `/teacher/exams?message=${encodeURIComponent(
+        'Prova criada com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    console.log(err)
+    res.redirect(
+      `/teacher/exams?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -160,5 +210,7 @@ module.exports = {
   handleCreateQuestionForm,
   questionPage,
   handleDeleteQuestion,
-  examListPage
+  examListPage,
+  createExamPage,
+  handleCreateExamForm
 };

@@ -3,7 +3,7 @@ const { Prisma } = require('@prisma/client');
 const HttpStatus = require('http-status-codes').StatusCodes;
 
 const createExam = async (req, res) => {
-  let { title, questionIds } = req.body;
+  let { title, questions } = req.body;
   let { userId } = req;
 
   try {
@@ -16,15 +16,7 @@ const createExam = async (req, res) => {
           },
         },
         questions: {
-          connect: questionIds.map((questionId) => {
-            return {
-              question: {
-                connect: {
-                  id: questionId,
-                },
-              },
-            };
-          }),
+          connect: questions
         },
       },
       include: {
@@ -39,7 +31,7 @@ const createExam = async (req, res) => {
 
     return res.status(HttpStatus.CREATED).json(exam);
   } catch (err) {
-    console.error('Error creating exam:', error);
+    console.error('Error creating exam:', err);
     res
       .status(HttpStatus.INTERNAL_SERVER_ERROR)
       .json({ error: 'Falha ao criar teste' });

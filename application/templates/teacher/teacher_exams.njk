@@ -1,4 +1,4 @@
-{% extends 'teacher/base.njk' %}
+{% extends 'teacher/teacher_base.njk' %}
 
 {% block breadcrumb %}
     {{ super() }}
@@ -25,10 +25,9 @@
                     <div class="card card-class">
                         <div class="card-body">
                             <h5 class="card-title">{{ exam.title }}</h5>
-                            <p class="card-text">{{ exam.statement }}</p>
                             <a href="/teacher/exams/{{exam.id}}" class="btn btn-primary">
-                                    Acesse a questão
-                                </a>
+                                Acesse a prova
+                            </a>
                         </div>
                     </div>
                 </div>

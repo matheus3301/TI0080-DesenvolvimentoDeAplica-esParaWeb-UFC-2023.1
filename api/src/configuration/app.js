@@ -20,6 +20,6 @@ app.use('/students', studentRouter);
 app.use('/classes', classRouter);
 app.use('/principals', principalRouter);
 app.use('/auth', authRouter);
-app.use('/exam', examRouter);
+app.use('/exams', examRouter);
 
 module.exports = app;

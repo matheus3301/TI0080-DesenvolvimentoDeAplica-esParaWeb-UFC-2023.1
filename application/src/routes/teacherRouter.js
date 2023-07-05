@@ -5,6 +5,8 @@ router.get('/', teacherController.dashboardPage);
 router.get('/classes', teacherController.classListPage);
 router.get('/questions', teacherController.questionListPage);
 router.get('/exams', teacherController.examListPage);
+router.get('/exams/new', teacherController.createExamPage);
+router.post('/exams/new', teacherController.handleCreateExamForm);
 router.get('/questions/new', teacherController.createQuestionPage);
 router.post('/questions/new', teacherController.handleCreateQuestionForm);
 router.get('/questions/:id', teacherController.questionPage)

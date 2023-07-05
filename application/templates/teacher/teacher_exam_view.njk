@@ -1,0 +1,65 @@
+{% extends 'teacher/teacher_base.njk' %}
+
+{% block breadcrumb %}
+    {{ super() }}
+    <li class="breadcrumb-item">Minhas Provas</li>
+    <li class="breadcrumb-item active">
+        {% if exam %}
+            {{ exam.id }}
+        {% else %}
+            Nova Prova
+        {% endif %}
+    </li>
+{% endblock%}
+
+{% block content %}
+  <div class="questions-header">
+    <h1>
+      {% if exam %}
+        Ver Prova
+      {% else %}
+        Nova Prova
+      {% endif %}
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form id='form_submit_question' name="{% if exam %}edit{% else %}create{% endif %}" method="POST">
+        {% if exam %}
+          <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" class="form-control" name="id" id="id" value="{% if exam %}{{ exam.id }}{% endif %}" disabled/>
+          </div>
+        {% endif %}
+        <div class="mb-3">
+          <label for="title" class="form-label">Título</label>
+          <input type="text" class="form-control" name="title" id="title" aria-describedby="" placeholder="" required value="{% if exam %}{{ exam.title }}{% endif %}"/>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Questões:</label>
+            <div id="questions" class="mb-3">
+                <select class="form-select form-select-lg mb-3" name="question_1" id="question_1">
+                    {% for question in questions_data %}
+                        <option value="{{question.id}}">{{question.id}} - {{question.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button id="button-function" type="button" onClick="add_question()" class="btn btn-primary">Adicionar Questão</button>
+            <button type="submit" class="btn btn-primary btn-submit">
+                {% if not exam %}
+                    Cadastrar
+                {% else %}
+                    Atualizar
+                {% endif %}
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+   <script src="/js/add_question.js"></script>
+{% endblock %}
