@@ -214,6 +214,54 @@ const teacher = {
 
     return response.data;
   },
+  getQuestions: async ({ query, token }) => {
+    let response;
+    if (query) {
+      response = await instance.get(
+        `/questions?query=${encodeURIComponent(query)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } else {
+      response = await instance.get(`/questions`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    return response.data;
+  },
+  createQuestion: async (body, token) => {
+    let response = await instance.post('/questions', body, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  getQuestionByID: async ({ id, token }) => {
+    let response = await instance.get(`/questions/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  deleteQuestion: async (id, token) => {
+    let response = await instance.delete(`/questions/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
 };
 
 module.exports = {

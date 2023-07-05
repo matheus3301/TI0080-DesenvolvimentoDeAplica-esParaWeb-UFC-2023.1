@@ -3,6 +3,11 @@ const teacherController = require('../controllers/teacherController');
 
 router.get('/', teacherController.dashboardPage);
 router.get('/classes', teacherController.classListPage);
+router.get('/questions', teacherController.questionListPage);
+router.get('/questions/new', teacherController.createQuestionPage);
+router.post('/questions/new', teacherController.handleCreateQuestionForm);
+router.get('/questions/:id', teacherController.questionPage)
+router.get('/questions/:id/delete', teacherController.handleDeleteQuestion);
 
 //TODO: Vitão - escrever todos os métodos no controller e no service api para realizar todas as funcionalidades do professor, incluindo criar provas, ver turma (OBS, deixar a parte de aplicar prova pro final)
 

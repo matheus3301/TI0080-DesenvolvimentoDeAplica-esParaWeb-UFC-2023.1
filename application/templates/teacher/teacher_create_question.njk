@@ -1,4 +1,4 @@
-{% extends "teacher/questions.njk" %}
+{% extends "teacher/teacher_questions.njk" %}
 
 {% block breadcrumb %}
     {{ super() }}
@@ -11,20 +11,20 @@
     </div>
     <div class="container d-flex justify-content-center align-items-center">
         <div class="row g-2 d-flex justify-content-center align-items-center create-question">
-            <form class="justify-content-center align-items-center" id="form_submit_question">
+            <form class="justify-content-center align-items-center" id="form_submit_question" name="create" method="POST">
                 <div class="mb-3">
                     <label for="" class="form-label">Título:</label>
-                    <input type="text" name="question_title" id="question_title" class="form-control" placeholder="" aria-describedby="helpId" required>
+                    <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId" required>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Comando da Questão:</label>
-                    <textarea type="text" name="question_statement" id="question_statement" class="form-control" placeholder="" aria-describedby="helpId" required></textarea>
+                    <textarea type="text" name="statement" id="statement" class="form-control" placeholder="" aria-describedby="helpId" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Alternativas:</label>
                     <div id="alternatives">
                         <input type="text"
-                        class="form-control mb-3" id="alternative_1" aria-describedby="helpId" placeholder="Alternativa correta!" required>
+                        class="form-control mb-3" id="alternative_1" name="alternative_1" aria-describedby="helpId" placeholder="Alternativa correta!" required>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -38,5 +38,5 @@
 {% endblock %}
 
 {% block scripts %}
-   <script src="/js/create_question_form.js"></script>
+   <script src="/js/add_alternative.js"></script>
 {% endblock %}

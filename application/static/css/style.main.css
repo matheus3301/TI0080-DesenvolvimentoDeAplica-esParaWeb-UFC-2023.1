@@ -27,6 +27,7 @@ body {
 
 .row {
   margin: 0;
+  padding: 0;
 }
 
 button {
@@ -242,6 +243,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0;
 }
 
 .questions-header a {
