@@ -1,8 +1,8 @@
-{% extends 'student/student_base.njk' %}
+{% extends 'teacher/teacher_base.njk' %}
 {% block breadcrumb %}
-  {{ super() }}
-  <li class="breadcrumb-item">Minhas Turmas</li>
-  <li class="breadcrumb-item active">{{ class_data.id }}</li>
+    {{ super() }}
+    <li class="breadcrumb-item">Minhas Turmas</li>
+    <li class="breadcrumb-item active">{{class_data.id}}</li>
 {% endblock %}
 {% block content %}
   <h1>{{ class_data.title }}</h1>
@@ -76,8 +76,7 @@
         </div>
     </div>
     <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab" tabindex="0">
-      <a name="exit-class" id="exit-class" class="btn btn-danger" href="/student/classes/{{ class_data.id }}/exit" role="button">Sair da Turma</a >
+      <a name="exit-class" id="exit-class" class="btn btn-danger" href="/teacher/classes/{{ class_data.id }}/delete" role="button">Excluir Turma</a >
     </div>
   </div>
-
 {% endblock %}

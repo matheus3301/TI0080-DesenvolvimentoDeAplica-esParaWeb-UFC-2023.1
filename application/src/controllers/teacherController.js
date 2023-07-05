@@ -200,6 +200,42 @@ const handleCreateExamForm = async (req, res) => {
   }
 };
 
+const classPage = async (req, res) => {
+  let { token } = req.cookies;
+  let { id } = req.params;
+  let class_data = await teacher.getClassByID({ id, token });
+
+  let content = {
+    error: req.query.error,
+    message: req.query.message,
+    name: req.userName,
+    profilePictureUrl: req.userProfilePictureUrl,
+    classes: true,
+    class_data: class_data,
+  };
+
+  res.render('teacher/teacher_class_view.njk', content);
+};
+
+const handleDeleteClass = async (req, res) => {
+  const { id } = req.params;
+  let { token } = req.cookies;
+
+  try {
+    await teacher.deleteClass(id, token);
+
+    res.redirect(
+      `/teacher/classes?message=${encodeURIComponent(
+        'Turma deletada com sucesso!'
+      )}`
+    );
+  } catch (err) {
+    res.redirect(
+      `/teacher/classes?error=${encodeURIComponent(err.response.data.error)}`
+    );
+  }
+};
+
 module.exports = {
   dashboardPage,
   classListPage,
@@ -211,4 +247,6 @@ module.exports = {
   examListPage,
   createExamPage,
   handleCreateExamForm,
+  classPage,
+  handleDeleteClass
 };

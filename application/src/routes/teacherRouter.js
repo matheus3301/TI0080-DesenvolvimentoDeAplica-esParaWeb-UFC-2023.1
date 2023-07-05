@@ -3,6 +3,8 @@ const teacherController = require('../controllers/teacherController');
 
 router.get('/', teacherController.dashboardPage);
 router.get('/classes', teacherController.classListPage);
+router.get('/classes/:id', teacherController.classPage)
+router.get('/classes/:id/delete', teacherController.handleDeleteClass)
 router.get('/questions', teacherController.questionListPage);
 router.get('/exams', teacherController.examListPage);
 router.get('/exams/new', teacherController.createExamPage);

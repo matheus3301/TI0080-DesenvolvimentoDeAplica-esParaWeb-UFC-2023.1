@@ -291,6 +291,24 @@ const teacher = {
     });
 
     return response.data;
+  },
+  getClassByID: async ({ id, token }) => {
+    let response = await instance.get(`/classes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  },
+  deleteClass: async (id, token) => {
+    let response = await instance.delete(`/classes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
   }
 };
 

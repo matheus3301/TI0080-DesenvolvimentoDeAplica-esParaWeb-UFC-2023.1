@@ -87,7 +87,11 @@ const getClassById = async (req, res) => {
       where: { id: parseInt(id) },
       include: {
         teacher: true,
-        enrollments: true,
+        enrollments: {
+          include: {
+            student: true
+          }
+        },
       },
     });
 
