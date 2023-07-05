@@ -30,11 +30,6 @@ body {
   padding: 0;
 }
 
-.row>* {
-  margin: 0;
-  padding: 0;
-}
-
 button {
   color: var(--background) !important;
 }

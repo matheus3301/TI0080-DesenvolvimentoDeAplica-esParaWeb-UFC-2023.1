@@ -9,7 +9,7 @@ const getMyExams = async (req, res) => {
     const { query } = req.query;
 
     let exams;
-    if (query) {
+    if (!query) {
       exams = await prisma.exam.findMany({
         where: {
           teacherId: userId,
