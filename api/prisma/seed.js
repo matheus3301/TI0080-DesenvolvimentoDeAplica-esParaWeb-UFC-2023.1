@@ -338,6 +338,142 @@ async function createQuestions() {
       choices: true,
     },
   });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `Em 1500, os portugueses chegaram nas terras que hoje correspondem ao Brasil. Sobre esse período, coloque verdadeiro (V) ou falso (F) nas afirmações abaixo:
+
+        I. Os portugueses chegaram no Brasil em 18 de abril de 1500.
+        II. Os portugueses vieram ao Brasil junto aos espanhóis para conquistar as terras.
+        III. Os principais grupos étnicos no Brasil colônia eram: brancos, negros e índios.`,
+      title: 'História - Período Colonial',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: 'F F V',
+            isCorrect: true,
+          },
+          {
+            value: 'F V V',
+            isCorrect: false,
+          },
+          {
+            value: 'V V F',
+            isCorrect: false,
+          },
+          {
+            value: 'V V V',
+            isCorrect: false,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `No período pré-colonial a atividade econômica que teve maior destaque foi:`,
+      title: 'História - Período Colonial',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: 'Mineração',
+            isCorrect: false,
+          },
+          {
+            value: 'Café',
+            isCorrect: false,
+          },
+          {
+            value: 'Algodão',
+            isCorrect: false,
+          },
+          {
+            value: 'Pau Brasil',
+            isCorrect: true,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `O menor bioma brasileiro está localizado entre os estados Mato Grosso e Mato Grosso do Sul. Apresenta clima tropical continental e vegetação marcada por gramíneas, árvores de médio porte e plantas rasteiras. Trata-se de uma das maiores planícies inundáveis do mundo, sendo chamado de “reino das águas”.
+
+        O bioma com essas características e que foi considerado Reserva da Biosfera e Patrimônio Natural Mundial é:`,
+      title: 'Geografia - Biomas',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: 'Pampa',
+            isCorrect: false,
+          },
+          {
+            value: 'Pantanal',
+            isCorrect: true,
+          },
+          {
+            value: 'Mata Atlântica',
+            isCorrect: false,
+          },
+          {
+            value: 'Pradaria',
+            isCorrect: false,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `(UECE) O elemento químico com Z = 54 possui em sua camada de valência a configuração 5s2 5p6. Os elementos com Z = 52 e com Z = 56 pertencem às famílias dos:`,
+      title: 'Química - Tabela Periódica',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: 'calcogênios e alcalinoterrosos',
+            isCorrect: true,
+          },
+          {
+            value: 'halogênios e alcalinos',
+            isCorrect: false,
+          },
+          {
+            value: 'halogênios e alcalinoterrosos',
+            isCorrect: false,
+          },
+          {
+            value: 'calcogênios e alcalinos',
+            isCorrect: false,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+
 }
 
 async function createStudents() {
