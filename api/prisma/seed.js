@@ -37,8 +37,49 @@ async function createClasses() {
       teacherId: (await prisma.teacher.findFirst({})).id,
     },
   });
-}
 
+  await prisma.class.create({
+    data:{
+      title: 'Redes de Computadores I',
+      description: 'Redes :)',
+      teacherId: (await prisma.teacher.findFirst({
+        where:{
+          name:{
+            contains:"Atslands"
+          }
+        }
+      })).id
+    }
+  });
+
+  await prisma.class.create({
+    data:{
+      title: 'Internet das Coisas',
+      description: 'IOT',
+      teacherId: (await prisma.teacher.findFirst({
+        where:{
+          name:{
+            contains:"Atslands"
+          }
+        }
+      })).id
+    }
+  });
+
+  await prisma.class.create({
+    data:{
+      title: 'Introdução ao Reconhecimento de Padrões',
+      description: 'Redes :)',
+      teacherId: (await prisma.teacher.findFirst({
+        where:{
+          name:{
+            contains:"Guilherme"
+          }
+        }
+      })).id
+    }
+  });
+}
 async function createPrincipals() {
   await prisma.admin.deleteMany({});
   await prisma.admin.create({
@@ -148,6 +189,146 @@ async function createQuestions() {
           },
           {
             value: '110',
+            isCorrect: false,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `(ENEM  2020) A caixa-d’água de um edifício terá a forma de um paralelepípedo retângulo reto com volume igual a 28 080 litros. Em uma maquete que representa o edifício, a caixa-d’água tem dimensões 2 cm × 3,51 cm × 4 cm.
+
+        Dado: 1 dm³ = 1 L.
+        
+        A escala usada pelo arquiteto foi`,
+      title: 'Matemática - Escala',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: '1 : 10',
+            isCorrect: false,
+          },
+          {
+            value: '1 : 100',
+            isCorrect: true,
+          },
+          {
+            value: '1 : 1 000',
+            isCorrect: false,
+          },
+          {
+            value: '1 : 10 000',
+            isCorrect: false,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `(Enem 2020). Nos livros Harry Potter, um anagrama do nome do personagem “TOM MARVOLO RIDDLE” gerou a frase “I AM LORD VOLDEMORT”.
+
+        Suponha que Harry quisesse formar todos os anagramas da frase “I AM POTTER”, de tal forma que as vogais e consoantes aparecessem sempre intercaladas, e sem considerar o espaçamento entre as letras.
+        
+        Nessas condições, o número de anagramas formados é dado por`,
+      title: 'Matemática - Permutação',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: '4! 5!',
+            isCorrect: false,
+          },
+          {
+            value: '2 x 4! 5!',
+            isCorrect: true,
+          },
+          {
+            value: '9! / 2',
+            isCorrect: false,
+          },
+          {
+            value: '4! 5! / 2',
+            isCorrect: true,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `(Enem/2019) Em um determinado ano, os computadores da receita federal de um país identificaram como inconsistentes 20% das declarações de imposto de renda que lhe foram encaminhadas. Uma declaração é classificada como inconsistente quando apresenta algum tipo de erro ou conflito nas informações prestadas. Essas declarações consideradas inconsistentes foram analisadas pelos auditores, que constataram que 25% delas eram fraudulentas. Constatou-se ainda que, dentre as declarações que não apresentaram inconsistências, 6,25% eram fraudulentas.
+
+        Qual é a probabilidade de, nesse ano, a declaração de um contribuinte ser considerada inconsistente, dado que ela era fraudulenta?`,
+      title: 'Matemática - Porcentagem',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: '0,1000',
+            isCorrect: false,
+          },
+          {
+            value: '0,1125',
+            isCorrect: true,
+          },
+          {
+            value: '0,3125',
+            isCorrect: false,
+          },
+          {
+            value: '0,5000',
+            isCorrect: true,
+          },
+        ],
+      },
+    },
+    include: {
+      choices: true,
+    },
+  });
+
+  await prisma.question.create({
+    data: {
+      statement:
+        `(Enem/2019) Em um determinado ano, os computadores da receita federal de um país identificaram como inconsistentes 20% das declarações de imposto de renda que lhe foram encaminhadas. Uma declaração é classificada como inconsistente quando apresenta algum tipo de erro ou conflito nas informações prestadas. Essas declarações consideradas inconsistentes foram analisadas pelos auditores, que constataram que 25% delas eram fraudulentas. Constatou-se ainda que, dentre as declarações que não apresentaram inconsistências, 6,25% eram fraudulentas.
+
+        Qual é a probabilidade de, nesse ano, a declaração de um contribuinte ser considerada inconsistente, dado que ela era fraudulenta?`,
+      title: 'Matemática - Escala',
+      teacherId: (await prisma.teacher.findFirst({})).id,
+      choices: {
+        create: [
+          {
+            value: 'X > 1 500',
+            isCorrect: false,
+          },
+          {
+            value: 'X < 3 000',
+            isCorrect: true,
+          },
+          {
+            value: '1 500 < X < 2 250',
+            isCorrect: true,
+          },
+          {
+            value: '1 500 < X < 3 000',
             isCorrect: false,
           },
         ],
